@@ -1,4 +1,5 @@
 /node_modules
+Procfile
 .env
 /public/hot
 /public/storage
