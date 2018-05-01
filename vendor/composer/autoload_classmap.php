@@ -19,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\User\\Auth\\LogoutController' => $baseDir . '/app/Http/Controllers/User/Auth/LogoutController.php',
     'App\\Http\\Controllers\\User\\Auth\\RegController' => $baseDir . '/app/Http/Controllers/User/Auth/RegController.php',
     'App\\Http\\Controllers\\User\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/User/Auth/ResetPasswordController.php',
+    'App\\Http\\Controllers\\User\\SpecialController' => $baseDir . '/app/Http/Controllers/User/SpecialController.php',
     'App\\Http\\Controllers\\User\\UsersController' => $baseDir . '/app/Http/Controllers/User/UsersController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
