@@ -11,19 +11,30 @@ class Cart extends Model
     public $timestamps = false;
     public $result = [];
 
-
-    /* public function __construct($cart)
-    {
-        if ($cart) {
-            $this->items = $cart->items;
-        }
-            
-    } */
+    /**
+     * ------------------------------------------------------
+     * Relations between Cart and Products models
+     * binding the cart' `product_id`
+     * with product's `id`
+     * ------------------------------------------------------
+     * @see https://laravel.com/docs/5.5/eloquent-relationships#one-to-one
+     * -----------------------------------------------------
+     *
+     * @return mixed|array
+     */
 
     public function products()
     {
         return $this->hasOne('App\Products', 'id', 'item_id');
     }
+
+    /**
+    * Relations. All cart items are users'
+    *
+    * @see https://laravel.com/docs/5.5/eloquent-relationships#one-to-many-inverse
+    *
+    * @return mixed|array
+    */
 
     public function user()
     {
@@ -36,7 +47,7 @@ class Cart extends Model
      * with all objects, arrays
      * indeed we just save data to DB
      * ----------------------------------------
-     * 
+     *
      * @method addItems
      * --------------------------------
      * @param Products $item
@@ -47,10 +58,10 @@ class Cart extends Model
      * ---------------------------------
      * @param Users $user
      * -----------------------------------
-     * 
+     *
      * @return void
      */
-    
+
     public function addItems(Products $item, int $itemId, Users $user)
     {
         $this->users_id = $user['id'];
