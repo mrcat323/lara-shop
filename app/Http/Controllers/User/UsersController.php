@@ -19,10 +19,11 @@ class UsersController extends Controller
 	 * ----------------------------------------
 	 * Viewing the settings page
 	 * ----------------------------------------
-	 * 
+	 *
+   * @return \Illuminate\Http\Response
 	 * @return int|array
 	 */
-    
+
     public function settingsPlain()
     {
 		// STAGE 1; Initing the objects
@@ -32,13 +33,13 @@ class UsersController extends Controller
 
 		// STAGE 2; Getting the arguments
 
-		/** 
+		/**
          * The User's data;
-         * the authorized user's data 
+         * the authorized user's data
          * should be taken by cookies
-         * 
+         *
          * @var array
-        */
+    */
 
 		$userData = $user->getUser();
 		$countIt = $cart->where(
@@ -47,19 +48,19 @@ class UsersController extends Controller
         )
         ->count();
 		return view('pages.settings')
-				->with('count', $countIt)
-    			->with('user', $userData);
+    				  ->with('count', $countIt)
+        			->with('user', $userData);
 	}
-	
+
 	/**
 	 * --------------------------------------------------------------------------------
-	 * Save changes after user's posting the information 
+	 * Save changes after user's posting the information
 	 * from settings page, here;
 	 * --------------------------------------------------------------------------------
-	 * 
+	 *
 	 * @param Illuminate\Http\Request $request
 	 * --------------------------------------------------------------------------------
-	 * 
+	 *
 	 * @return array
 	 */
 
@@ -68,13 +69,13 @@ class UsersController extends Controller
 		// STAGE 1; "New-ing" the objects; calling them
 
 		$user = new Users;
-		
+
 		// STAGE 2; Receiving the arguments
 
 		$userData = $user->getUser();
-		
+
 		// STAGE 3; The logic bomb
-		
+
     	$userUpdateInfo = $user->find($userData['id']);
     	$userUpdateInfo->name = $request->name;
     	if (!is_null($request->password)) {

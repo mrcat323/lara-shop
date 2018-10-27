@@ -16,8 +16,8 @@ class MainController extends Controller
 
     /**
      * Home page
-     * 
-     * @return view() -> welcome with user Data
+     *
+     * @return \Illuminate\Http\Response
      */
     public function home()
     {
@@ -29,11 +29,11 @@ class MainController extends Controller
 
         // STAGE 2; Obtaining the arguments
 
-        /** 
+        /**
          * The User's data;
-         * the authorized user's data 
+         * the authorized user's data
          * should be taken by cookies
-         * 
+         *
          * @var array
         */
 
@@ -46,14 +46,15 @@ class MainController extends Controller
         )
         ->count();
         return view('pages.welcome')
-        ->with('user', $userData)
-        ->with('count', $countIt)
-        ->with('products', $products);
+                  ->with('user', $userData)
+                  ->with('count', $countIt)
+                  ->with('products', $products);
     }
 
     /**
      * About page
-     * 
+     *
+     * @return \Illuminate\Http\Response
      * @return int|array
      */
 
@@ -66,11 +67,11 @@ class MainController extends Controller
 
         // STAGE 2; Obtaining the arguments
 
-        /** 
+        /**
          * The User's data;
-         * the authorized user's data 
+         * the authorized user's data
          * should be taken by cookies
-         * 
+         *
          * @var array
         */
 
@@ -81,7 +82,7 @@ class MainController extends Controller
         )
         ->count();
         return view('pages.about')
-                ->with('count', $countIt)
-                ->with('user', $userData);
+                  ->with('count', $countIt)
+                  ->with('user', $userData);
     }
 }

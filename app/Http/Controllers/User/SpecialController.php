@@ -21,9 +21,10 @@ class SpecialController extends Controller
      * ----------------------------------------
      * The Administrator's panel; room
      * ----------------------------------------
-     * 
+     *
+     * @return \Illuminate\Http\Response
      * @return array|int
-     * 
+     *
      */
     public function admin()
     {
@@ -39,9 +40,9 @@ class SpecialController extends Controller
 
         // STAGE 3; The logic bomb
 
-        // user has not status == 1 ? 
+        // user has not status == 1 ?
         // he has no previliegies
-        
+
         if ($userData['status'] == 0) {
             return redirect('/');
         }
@@ -52,19 +53,19 @@ class SpecialController extends Controller
         ->count();
         $products = $product->all();
         return view('pages.personal')
-                ->with('user', $userData)
-                ->with('count', $countIt)
-                ->with('products', $products);
+                  ->with('user', $userData)
+                  ->with('count', $countIt)
+                  ->with('products', $products);
     }
 
     /**
      * ----------------------------------------
      * Deleting the product by its id
      * ----------------------------------------
-     * 
+     *
      * @param Illuminate\Http\Request $request
      * ----------------------------------------
-     * 
+     *
      * @return array
      */
 
@@ -93,17 +94,17 @@ class SpecialController extends Controller
      * ----------------------------------------
      * Create a product
      * ----------------------------------------
-     * 
+     *
      * @param Illuminate\Http\Request $request
      * ----------------------------------------
-     * 
-     * @return void
+     *
+     * @return \Illuminate\Http\Response
      */
-    
+
     public function create(Request $request)
     {
         // STAGE 1; Calling the objects
-        
+
         $product = new Products;
 
         // STAGE 2; Arguments "earning"

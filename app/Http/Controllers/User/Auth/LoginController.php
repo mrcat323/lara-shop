@@ -18,8 +18,8 @@ class LoginController extends Controller
 
     /**
      * the main page of Sign In
-     * 
-     * @return view() -> login view
+     *
+     * @return \Illuminate\Http\Response
      */
 
     public function index()
@@ -27,13 +27,16 @@ class LoginController extends Controller
         $user = new Users;
         $userData = $user->getUser();
         return view('auth.login')
-        ->with('user', $userData);
+                  ->with('user', $userData);
     }
 
     /**
      * Login process
-     * 
+     *
      * @param Request $request
+     *
+     * @return \Illuminate\Http\Response
+     * @return mixed 
      */
 
     public function action(Request $request)
@@ -44,7 +47,7 @@ class LoginController extends Controller
         $product = new Products;
 
         // STAGE 2; Arguments;
-        
+
         $email = $request->email;
         $password = $request->password;
 
@@ -59,10 +62,10 @@ class LoginController extends Controller
 
         /**
          * Fetching the all products from the db
-         * 
+         *
          * @var array $products Products
          */
-        
+
         $products = $product->all();
 
         // comparing inputed password with those from db

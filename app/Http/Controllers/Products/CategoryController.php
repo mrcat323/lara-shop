@@ -22,9 +22,9 @@ class CategoryController extends Controller
      * Relations been setted with category_id from products,
      * and `id` from category
      * -----------------------------------------------------------
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return App\Users::getUser(),
      *         App\Category::products->all();
      */
@@ -39,11 +39,11 @@ class CategoryController extends Controller
 
         // STAGE 2; Setting the variables
 
-        /** 
+        /**
          * The User's data;
-         * the authorized user's data 
+         * the authorized user's data
          * need be taken by cookies
-         * 
+         *
          * @var array
         */
 
@@ -57,9 +57,9 @@ class CategoryController extends Controller
         ->count();
 
         // STAGE 3; Logic bomb
-        
+
         // redirect by category's not existance
-        
+
         if (is_null($productsByCategory)) {
             return redirect('/');
         }

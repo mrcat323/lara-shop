@@ -9,8 +9,8 @@ class LogoutController extends Controller
 {
     /**
      * the logout action
-     * 
-     * @return redirect() -> home page
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {

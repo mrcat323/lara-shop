@@ -20,11 +20,11 @@ class ProductsController extends Controller
 {
 
     /**
-     * show single product in the single page; 
+     * show single product in the single page;
      * with all info
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return App\Users::getUser(),
      *         App\Products::find($id);
      */
@@ -59,10 +59,10 @@ class ProductsController extends Controller
          * @see CategoryController.php LINE 61
          * ---------------------------------------------
          * if product doesn't exist; its id is not in DB,
-         * we redirect back; 
+         * we redirect back;
          * to home page
          * ---------------------------------------------
-         * 
+         *
          */
         if (is_null($product)) {
             return redirect('/');
@@ -76,13 +76,13 @@ class ProductsController extends Controller
 
     /**
      * Adding the products to the cart;
-     * 
+     *
      * @param Illuminate\Http\Request $request
-     * 
+     *
      * @return mixed|array
      */
 
-     public function addToCart(Request $request) 
+     public function addToCart(Request $request)
      {
         // STAGE 1; Initializing the objects
 
@@ -117,7 +117,7 @@ class ProductsController extends Controller
     /**
      * Taking items from the cart;
      * look at them you can only with this method
-     * 
+     *
      * @return view
      */
 
@@ -132,15 +132,15 @@ class ProductsController extends Controller
             return redirect('/');
         }
 
-        $products = DB::select("SELECT t1.id, t2.id AS p_id, t1.title, t2.price, t2.quantity FROM products AS t1 
+        $products = DB::select("SELECT t1.id, t2.id AS p_id, t1.title, t2.price, t2.quantity FROM products AS t1
                                 INNER JOIN cart AS t2 WHERE t1.id = t2.item_id AND t2.users_id = ". $userData['id']);
         $total = 0;
         foreach ($products as $p) {
             $total += $p->price;
         }
 
-       /* 
-       ////////////////////// 
+       /*
+       //////////////////////
         ANOTHER PRINCIPE TO DO IT
        ////////////////////
         // $use = $user->find($userData['id']);
@@ -172,13 +172,13 @@ class ProductsController extends Controller
      * Deleting items from the cart
      * By ID deleting the items
      * ---------------------------------------------------
-     * 
+     *
      * @param Illuminate\Http\Request $request
-     * 
+     *
      * @return mixed|array
      */
 
-    public function deleteItems(Request $request) 
+    public function deleteItems(Request $request)
     {
         $cart = new Cart;
         $product = new Products;
@@ -200,7 +200,7 @@ class ProductsController extends Controller
             return $result;
         }
         $total = 0;
-        $products = DB::select("SELECT t1.id, t2.id AS p_id, t1.title, t2.price, t2.quantity FROM products AS t1 
+        $products = DB::select("SELECT t1.id, t2.id AS p_id, t1.title, t2.price, t2.quantity FROM products AS t1
                                 INNER JOIN cart AS t2 WHERE t1.id = t2.item_id AND t2.users_id = ". $userData['id']);
         foreach ($products as $p) {
             $total += $p->price;
@@ -215,13 +215,13 @@ class ProductsController extends Controller
     /**
      * --------------------------------------------------------------
      * Delete all items from the cart;
-     * if user clicked button with CSS selector ".deleteAll", 
+     * if user clicked button with CSS selector ".deleteAll",
      * it will redirect us here; to this method actually;
      * and this will remove from the Cart data from DB
      * ---------------------------------------------------------------
-     * 
+     *
      * @param Illuminate\Http\Request $request
-     * 
+     *
      * @return json|mixed
      */
 
@@ -231,11 +231,11 @@ class ProductsController extends Controller
         $product = new Products;
         $user = new Users;
         $userData = $user->getUser();
-        
+
         /**
          * Delete all user's items from the cart;
          * by meaning by User ID; delete by User Id;
-         * 
+         *
          * @var $delete
          */
         $delete = $cart->where(
@@ -262,9 +262,9 @@ class ProductsController extends Controller
      * with this method we'll send an E-Mail to customer to tell them
      * that they successfully bought the items;
      * --------------------------------------------------------------------
-     * 
+     *
      * @param Illuminate\Http\Request $request
-     * 
+     *
      * @return json|mixed
      */
 

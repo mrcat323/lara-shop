@@ -12,13 +12,28 @@ use App\Users;
 
 class RegController extends Controller
 {
+
+    /**
+    * Main form page for signing up
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         $user = new Users;
         $userData = $user->getUser();
         return view('auth.register')
-        ->with('user', $userData);
+                  ->with('user', $userData);
     }
+
+    /**
+    * Registering the user
+    *
+    * @param \Illuminate\Http\Request $request
+    *
+    * @return \Illuminate\Http\Response
+    * @return mixed
+    */
 
     public function action(Request $request)
     {
@@ -27,7 +42,7 @@ class RegController extends Controller
         $user = new Users;
 
         // STAGE 2; Arguments;
-        
+
         $name = $request->name;
         $email = $request->email;
         $password = password_hash($request->password, PASSWORD_BCRYPT);
