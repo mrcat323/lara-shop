@@ -70,5 +70,5 @@ $('#buy-now').click(function (){
     let name = $('#inputName').val(),
         email = $('#inputEmail').val(),
         about = $('#inputAddress').val();
-    Events.sendRequest(name, email, about);
+    Events.buyCart(name, email, about);
 });

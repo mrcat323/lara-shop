@@ -3,15 +3,13 @@
 // we should do like this for not shitting the code
 Events = {
     // register; sign up method
-    Register: function (name, email, password) {
+    register(name, email, password) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.register,
             data: {
-                name: name,
-                email: email,
-                password: password
+                name, email, password
             }
         }).done(function (data){
             if (data.status == 1) {
@@ -20,14 +18,13 @@ Events = {
         });
     },
     // login; sign in method
-    Login: function (email, password) {
+    login(email, password) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.login,
             data: {
-                email: email,
-                password: password
+                email, password
             }
         }).done(function (data){
             // also here; error have been fixed
@@ -40,14 +37,13 @@ Events = {
         });
     },
     // settings' save changes
-    saveChanges: function (name, password) {
+    saveChanges(name, password) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.saveChanges,
             data: {
-                name: name,
-                password: password
+                name, password
             }
         }).done(function (data){
             if (data.status == 1) {
@@ -62,26 +58,26 @@ Events = {
             }
         });
     },
-    addCart: function (id) {
+    addCart(id) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.addCart,
             data: {
-                id: id
+                id
             }
         }).done(function (data) {
           let count = (data.count == 1) ? data.count + ' item ' : data.count + ' items ';
           $('.cart').html('You have ' + count + 'in your <a href="/cart"><i class="fa fa-shopping-cart"></i> cart take a look</a>');
         });
     },
-    deleteItem: function (id) {
+    deleteItem(id) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.deleteItem,
             data: {
-                id: id
+                id
             }
         }).done(function (data) {
             let count = (data.count == 1) ? data.count + ' item ' : data.count + ' items ';
@@ -92,7 +88,7 @@ Events = {
             }
         });
     },
-    deleteAllItems: function () {
+    deleteAllItems() {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
@@ -102,19 +98,19 @@ Events = {
             $('.jumbotron').prepend('<div class="alert alert-success">You successfully removed all items from your cart</div>');
         });
     },
-    deleteProduct: function (id) {
+    deleteProduct(id) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.deleteProduct,
             data: {
-                id: id
+                id
             }
         }).done(function (data){
             return true;
         });
     },
-    sendRequest: function (name, email, text) {
+    buyCart(name, email, text) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
