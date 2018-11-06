@@ -50,13 +50,13 @@ class Cart extends Model
      *
      * @method addItems
      * --------------------------------
-     * @param Products $item
+     * @param App\Products $item
      * ---------------------------------
      * ---------------------------------
      * @param int $itemId
      * ---------------------------------
      * ---------------------------------
-     * @param Users $user
+     * @param App\Users $user
      * -----------------------------------
      *
      * @return void
