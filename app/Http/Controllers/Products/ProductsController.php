@@ -219,10 +219,10 @@ class ProductsController extends Controller
      * @param App\Products $product
      * @param App\Users $user
      *
-     * @return json|mixed
+     * @return array|mixed
      */
 
-    public function buyItems(Request $request, Cart $cart, Users $user)
+    public function buyFromCart(Request $request, Cart $cart, Users $user)
     {
         // objects in arguments
 

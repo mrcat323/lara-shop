@@ -31841,7 +31841,7 @@ Routes = {
        deleteAllItems: '/cart/deleteAll',
        deleteProduct: '/personal/cabin/delete',
        createProduct: '/personal/cabin/create',
-       sendRequest: '/cart/request'
+       buyCart: '/cart/buy'
 };
 
 /***/ }),
@@ -31853,15 +31853,13 @@ Routes = {
 // we should do like this for not shitting the code
 Events = {
     // register; sign up method
-    Register: function Register(name, email, password) {
+    register: function register(name, email, password) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.register,
             data: {
-                name: name,
-                email: email,
-                password: password
+                name: name, email: email, password: password
             }
         }).done(function (data) {
             if (data.status == 1) {
@@ -31869,15 +31867,15 @@ Events = {
             }
         });
     },
+
     // login; sign in method
-    Login: function Login(email, password) {
+    login: function login(email, password) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
             url: Routes.login,
             data: {
-                email: email,
-                password: password
+                email: email, password: password
             }
         }).done(function (data) {
             // also here; error have been fixed
@@ -31889,6 +31887,7 @@ Events = {
             }
         });
     },
+
     // settings' save changes
     saveChanges: function saveChanges(name, password) {
         $.ajax({
@@ -31896,8 +31895,7 @@ Events = {
             headers: Routes.header,
             url: Routes.saveChanges,
             data: {
-                name: name,
-                password: password
+                name: name, password: password
             }
         }).done(function (data) {
             if (data.status == 1) {
@@ -31964,15 +31962,13 @@ Events = {
             return true;
         });
     },
-    sendRequest: function sendRequest(name, email, text) {
+    buyCart: function buyCart(name, email, text) {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
-            url: Routes.sendRequest,
+            url: Routes.buyCart,
             data: {
-                name: name,
-                email: email,
-                about: text
+                name: name, email: email, text: text
             }
         }).done(function (data) {
             if (data.status == 1) {
@@ -31987,6 +31983,11 @@ Events = {
         });
     }
 };
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
 $('#register').click(function () {
     var name = $('#inputName').val(),
         email = $('#inputEmail').val(),
@@ -32059,14 +32060,8 @@ $('#buy-now').click(function () {
     var name = $('#inputName').val(),
         email = $('#inputEmail').val(),
         about = $('#inputAddress').val();
-    Events.sendRequest(name, email, about);
+    Events.buyCart(name, email, about);
 });
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 /* 38 */

@@ -114,11 +114,9 @@ Events = {
         $.ajax({
             type: 'POST',
             headers: Routes.header,
-            url: Routes.sendRequest,
+            url: Routes.buyCart,
             data: {
-                name: name,
-                email: email,
-                about: text
+                name, email, text
             }
         }).done(function (data){
             if (data.status == 1) {

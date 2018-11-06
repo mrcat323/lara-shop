@@ -51,7 +51,7 @@ Route::post('/cart/delete', 'Products\ProductsController@deleteItems');
 Route::post('/cart/deleteAll', 'Products\ProductsController@deleteAllItems');
 
 // cart buy
-Route::post('/cart/request', 'Products\ProductsController@buyItems');
+Route::post('/cart/buy', 'Products\ProductsController@buyFromCart');
 
 // admin panel
 Route::get('/personal/cabin', 'User\SpecialController@admin');

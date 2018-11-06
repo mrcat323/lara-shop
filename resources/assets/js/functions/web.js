@@ -16,5 +16,5 @@ Routes = {
     deleteAllItems: '/cart/deleteAll',
     deleteProduct: '/personal/cabin/delete',
     createProduct: '/personal/cabin/create',
-    sendRequest: '/cart/request',
+    buyCart: '/cart/buy',
 }
