@@ -25,8 +25,7 @@ class CategoryController extends Controller
      *
      * @param int $id
      *
-     * @return App\Users::getUser(),
-     *         App\Category::products->all();
+     * @return Illuminate\Http\Response
      */
 
     public function show(int $id)
@@ -50,11 +49,7 @@ class CategoryController extends Controller
         $userData = $user->getUser();
 
         $productsByCategory = $category->find($id);
-        $countIt = $cart->where(
-            'users_id',
-            $userData['id']
-        )
-        ->count();
+        $countIt = $cart->where('users_id', $userData['id'])->count();
 
         // STAGE 3; Logic bomb
 
@@ -68,8 +63,8 @@ class CategoryController extends Controller
 
         $products = $productsByCategory->products->all();
         return view('products.by-category')
-                ->with('user', $userData)
-                ->with('count', $countIt)
-                ->with('products', $products);
+                  ->with('user', $userData)
+                  ->with('count', $countIt)
+                  ->with('products', $products);
     }
 }

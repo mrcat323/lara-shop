@@ -22,17 +22,17 @@ class SpecialController extends Controller
      * The Administrator's panel; room
      * ----------------------------------------
      *
-     * @return \Illuminate\Http\Response
-     * @return array|int
+     * @param App\Products $product
+     * @param App\Users $user
+     * @param App\Cart $cart
      *
+     * @return \Illuminate\Http\Response
      */
-    public function admin()
+
+    public function admin(Products $product, Users $user, Cart $cart)
     {
         // STAGE 1; Calling the objects
-
-        $product = new Products;
-        $user = new Users;
-        $cart = new Cart;
+        // passing them as arguments
 
         // STAGE 2; Arguments "earning"
 
@@ -46,11 +46,7 @@ class SpecialController extends Controller
         if ($userData['status'] == 0) {
             return redirect('/');
         }
-        $countIt = $cart->where(
-            'users_id',
-            $userData['id']
-        )
-        ->count();
+        $countIt = $cart->where('users_id', $userData['id'])->count();
         $products = $product->all();
         return view('pages.personal')
                   ->with('user', $userData)
@@ -64,27 +60,24 @@ class SpecialController extends Controller
      * ----------------------------------------
      *
      * @param Illuminate\Http\Request $request
+     * @param App\Products $product
      * ----------------------------------------
      *
      * @return array
      */
 
-    public function delete(Request $request)
+    public function delete(Request $request, Products $product)
     {
         // STAGE 1; Calling the objects
-
-        $product = new Products;
+        // passed in arguments
 
         // STAGE 2; Arguments "earning"
 
-        $id = $request->id;
+        $productId = $request->id;
 
         // STAGE 3; The logic bomb
 
-        $delete = $product->where(
-            'id',
-            $id
-        )->delete();
+        $delete = $product->where('id', $productId)->delete();
         $result['status'] = 1;
         $result['msg'] = 'Successfully deleted!';
         return $result;
@@ -96,16 +89,16 @@ class SpecialController extends Controller
      * ----------------------------------------
      *
      * @param Illuminate\Http\Request $request
+     * @param App\Products $product
      * ----------------------------------------
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function create(Request $request)
+    public function create(Request $request, Products $product))
     {
         // STAGE 1; Calling the objects
-
-        $product = new Products;
+        // passed in Arguments
 
         // STAGE 2; Arguments "earning"
 

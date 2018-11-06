@@ -25,8 +25,7 @@ class ProductsController extends Controller
      *
      * @param int $id
      *
-     * @return App\Users::getUser(),
-     *         App\Products::find($id);
+     * @return Illuminate\Http\Response
      */
 
     public function single(int $id)
@@ -40,33 +39,11 @@ class ProductsController extends Controller
         // STAGE 2; Caching the arguments; user info; product's plain
 
         $userData = $user->getUser();
-        $product = $product->find($id);
-
-        $countIt = $cart->where(
-            'users_id',
-            $userData['id']
-        )
-        ->count();
+        $product = $product->findOrFail($id);
 
         // STAGE 3; Logic Bomb; The logical Thinking;
 
-        /**
-         * -----------------------------------------------
-         * the same thing as category not existing
-         * ----------------------------------------------
-         * @source redirect('/');
-         * ----------------------------------------------
-         * @see CategoryController.php LINE 61
-         * ---------------------------------------------
-         * if product doesn't exist; its id is not in DB,
-         * we redirect back;
-         * to home page
-         * ---------------------------------------------
-         *
-         */
-        if (is_null($product)) {
-            return redirect('/');
-        }
+        $countIt = $cart->where('users_id', $userData['id'])->count();
 
         return view('products.product')
                 ->with('user', $userData)
@@ -78,17 +55,17 @@ class ProductsController extends Controller
      * Adding the products to the cart;
      *
      * @param Illuminate\Http\Request $request
+     * @param App\Cart $cart
+     * @param App\Products $product
+     * @param App\Users $users
      *
      * @return mixed|array
      */
 
-     public function addToCart(Request $request)
+     public function addToCart(Request $request, Cart $cart, Products $product, Users $user)
      {
         // STAGE 1; Initializing the objects
-
-        $cart = new Cart;
-        $product = new Products;
-        $user = new Users;
+        // passed in arguments
 
         // STAGE 2; Obtaining the arguments
 
@@ -104,10 +81,8 @@ class ProductsController extends Controller
         // put it to our method for adding that same product to the cart
 
         $cart->addItems($item, $itemId, $userData);
-        $count = $cart->where(
-            'users_id',
-            $userData['id']
-        )->count();
+        $count = $cart->where('users_id', $userData['id'])->count();
+
         $result['status'] = 1;
         $result['count'] = $count;
         $result['msg'] = 'Successfully added to cart!';
@@ -118,16 +93,18 @@ class ProductsController extends Controller
      * Taking items from the cart;
      * look at them you can only with this method
      *
-     * @return view
+     * @param App\Cart $cart
+     * @param App\Products $product
+     * @param App\Users $user
+     *
+     * @return Illuminate\Http\Response
      */
 
-    public function getCartItems()
+    public function getCartItems(Cart $cart, Products $product, Users $user)
     {
-        $cart = new Cart;
-        $product = new Products;
-        $user = new Users;
+        // objects passed in arguments
+
         $userData = $user->getUser();
-        // if (is_null($userData))
         if (is_null($userData)) {
             return redirect('/');
         }
@@ -139,32 +116,12 @@ class ProductsController extends Controller
             $total += $p->price;
         }
 
-       /*
-       //////////////////////
-        ANOTHER PRINCIPE TO DO IT
-       ////////////////////
-        // $use = $user->find($userData['id']);
-        // $products = $use->cartItems;
-        // $per = [];
-        // $ren = [];
-        // $total = 0;
-        // foreach ($products as $p) {
-        //     $total += $p->price;
-        //     $ren[] = $p->id;
-        //     $per[] = $product->find($p->item_id);
-        // } */
-        $countIt = $cart->where(
-            'users_id',
-            $userData['id']
-        )
-        ->count();
+        $countIt = $cart->where('users_id', $userData['id'])->count();
         return view('products.cart')
-                ->with('user', $userData)
-                ->with('count', $countIt)
-                // ->with('ren', $ren)
-                ->with('total', $total)
-                // ->with('stuff', $per)
-                ->with('stuff', $products);
+                  ->with('user', $userData)
+                  ->with('count', $countIt)
+                  ->with('total', $total)
+                  ->with('stuff', $products);
     }
 
     /**
@@ -174,26 +131,21 @@ class ProductsController extends Controller
      * ---------------------------------------------------
      *
      * @param Illuminate\Http\Request $request
+     * @param App\Cart $cart
+     * @param App\Products $product
+     * @param App\Users $user
      *
      * @return mixed|array
      */
 
-    public function deleteItems(Request $request)
+    public function deleteItems(Request $request, Cart $cart, Products $product, Users $user)
     {
-        $cart = new Cart;
-        $product = new Products;
-        $user = new Users;
+        // objects passed in arguments
+
         $userData = $user->getUser();
         $itemId = $request->id;
-        $delete = $cart->where(
-            'id',
-            $itemId
-        )->delete();
-        $count = $cart->where(
-            'users_id',
-            $userData['id']
-        )
-        ->count();
+        $delete = $cart->where('id', $itemId)->delete();
+        $count = $cart->where('users_id', $userData['id'])->count();
         if (is_null($delete)) {
             $result['status'] = 0;
             $result['msg'] = 'Error; something went wrong';
@@ -221,15 +173,17 @@ class ProductsController extends Controller
      * ---------------------------------------------------------------
      *
      * @param Illuminate\Http\Request $request
+     * @param App\Cart $cart
+     * @param App\Products $product
+     * @param App\Users $user
      *
      * @return json|mixed
      */
 
-    public function deleteAllItems(Request $request)
+    public function deleteAllItems(Request $request, Cart $cart, Products $product, Users $user)
     {
-        $cart = new Cart;
-        $product = new Products;
-        $user = new Users;
+        // objects passed in arguments
+
         $userData = $user->getUser();
 
         /**
@@ -238,10 +192,7 @@ class ProductsController extends Controller
          *
          * @var $delete
          */
-        $delete = $cart->where(
-            'users_id',
-            $userData['id']
-        )->delete();
+        $delete = $cart->where('users_id', $userData['id'])->delete();
 
         // if delete isn't working
 
@@ -264,29 +215,23 @@ class ProductsController extends Controller
      * --------------------------------------------------------------------
      *
      * @param Illuminate\Http\Request $request
+     * @param App\Cart $cart
+     * @param App\Products $product
+     * @param App\Users $user
      *
      * @return json|mixed
      */
 
-    public function buyItems(Request $request)
+    public function buyItems(Request $request, Cart $cart, Users $user)
     {
-        $user = new Users;
-        $cart = new Cart;
+        // objects in arguments
+
         $to = $request->email;
         $subject = 'Cart is full!';
         $message = "Dear \"{$request->name}\" you successfully did buy products, please pay before getting";
         $headers = 'From: noreply@larashop.tk';
-        /* if (!mail($to, $subject, $message, $headers)) {
-            $result['status'] = 0;
-            $result['msg'] = 'Error sending an E-Mail';
-            return $result;
-        } */
         $userData = $user->getUser();
-        $deleteItems = $cart->where(
-            'users_id',
-            $userData['id']
-        )
-        ->delete();
+        $deleteItems = $cart->where('users_id', $userData['id'])->delete();
         // we'll send a test letter later;
         // for now; we do nothing;
         $result['status'] = 1;

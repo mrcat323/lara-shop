@@ -19,12 +19,12 @@ class LoginController extends Controller
     /**
      * the main page of Sign In
      *
+     * @param App\Users $user
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(Users $user)
     {
-        $user = new Users;
         $userData = $user->getUser();
         return view('auth.login')
                   ->with('user', $userData);
@@ -36,67 +36,67 @@ class LoginController extends Controller
      * @param Request $request
      *
      * @return \Illuminate\Http\Response
-     * @return mixed 
+     * @param App\Users $user
+     * @param App\Products $product
+     *
+     * @return mixed
      */
 
-    public function action(Request $request)
+    public function action(Request $request, Users $user, Products $product)
     {
-        // STAGE 1; Initializing the classes;
+          // STAGE 1; Initializing the classes;
+          // passed in arguments
 
-        $user = new Users;
-        $product = new Products;
+          // STAGE 2; Arguments;
 
-        // STAGE 2; Arguments;
+          $email = $request->email;
+          $password = $request->password;
 
-        $email = $request->email;
-        $password = $request->password;
+          /**
+           * @var array $userData
+           */
 
-        /**
-         * @var array $userData User
-         */
+          $userData = $user->where([
+                ['email', '=', $email]
+              ])->first();
 
-        $userData = $user
-        ->where([
-            ['email', '=', $email]
-        ])->first();
+          /**
+           * Fetching the all products from the db
+           *
+           * @var array $products Products
+           */
 
-        /**
-         * Fetching the all products from the db
-         *
-         * @var array $products Products
-         */
+          $products = $product->all();
 
-        $products = $product->all();
+          // comparing inputed password with those from db
 
-        // comparing inputed password with those from db
+          if (password_verify($password, $userData['password'])) {
+              $result['status'] = 1;
+              $result['msg'] = 'Success';
+              $result['html'] = view('pages.welcome')
+               ->with('products', $products)
+               ->render();
+              $time = strtotime('+2 days');
 
-        if (password_verify($password, $userData['password'])) {
-            $result['status'] = 1;
-            $result['msg'] = 'Success';
-            $result['html'] = view('pages.welcome')
-             ->with('products', $products)
-             ->render();
-            $time = strtotime('+2 days');
+              // setting cookies for 2 days
 
-            // setting cookies for 2 days
+              setcookie('email', $email, $time, '/');
+              setcookie('password', $password, $time, '/');
+              return response()->json($result);
 
-            setcookie('email', $email, $time, '/');
-            setcookie('password', $password, $time, '/');
-            return response()->json($result);
-        } else {
+          } else {
 
-            // if user's input is not same as from db, we get an error
+              // if user's input is not same as from db, we get an error
 
-            $result['status'] = 0;
-            $result['msg'] = 'Wrong credetails; email or password';
-            return $result;
-        }
+              $result['status'] = 0;
+              $result['msg'] = 'Wrong credetails; email or password';
+              return $result;
+          }
 
-        $result['status'] = 1;
-        $result['msg'] = 'success';
-        $result['html'] = view('pages.welcome')
-        ->render();
-        return response()->json($result);
+          $result['status'] = 1;
+          $result['msg'] = 'success';
+          $result['html'] = view('pages.welcome')->render();
+          return response()->json($result);
     }
 
 }

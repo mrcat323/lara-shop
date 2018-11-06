@@ -16,11 +16,13 @@ class RegController extends Controller
     /**
     * Main form page for signing up
     *
+    * @param App\Users $user
+    *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    
+    public function index(Users $user)
     {
-        $user = new Users;
         $userData = $user->getUser();
         return view('auth.register')
                   ->with('user', $userData);
@@ -30,39 +32,37 @@ class RegController extends Controller
     * Registering the user
     *
     * @param \Illuminate\Http\Request $request
+    * @param App\Users $user
     *
     * @return \Illuminate\Http\Response
     * @return mixed
     */
 
-    public function action(Request $request)
+    public function action(Request $request, Users $user)
     {
-        // STAGE 1; Initializing the classes;
+          // STAGE 1; Initializing the classes;
+          // passed in arguments
 
-        $user = new Users;
+          // STAGE 2; Arguments;
 
-        // STAGE 2; Arguments;
+          $name = $request->name;
+          $email = $request->email;
+          $password = password_hash($request->password, PASSWORD_BCRYPT);
 
-        $name = $request->name;
-        $email = $request->email;
-        $password = password_hash($request->password, PASSWORD_BCRYPT);
+          $user->name = $name;
+          $user->email = $email;
+          $user->password = $password;
 
-        $user->name = $name;
-        $user->email = $email;
-        $user->password = $password;
+          $user->save();
 
-        $user->save();
+          $time = strtotime('+2 days');
 
-        $time = strtotime('+2 days');
+          setcookie('email', $email, $time, '/');
+          setcookie('password', $password, $time, '/');
 
-        setcookie('email', $email, $time, '/');
-        setcookie('password', $password, $time, '/');
-
-        $result['status'] = 1;
-        $result['msg'] = 'success';
-        $result['html'] = view('pages.about');
-        return response()->json($result);
-
-
+          $result['status'] = 1;
+          $result['msg'] = 'success';
+          $result['html'] = view('pages.about')->render();
+          return response()->json($result);
     }
 }
