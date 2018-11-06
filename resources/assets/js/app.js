@@ -8,3 +8,4 @@
 require('./functions/bootstrap');
 require('./functions/web');
 require('./functions/action');
+require('./functions/events');

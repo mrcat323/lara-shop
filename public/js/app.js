@@ -746,7 +746,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(8);
-module.exports = __webpack_require__(37);
+module.exports = __webpack_require__(38);
 
 
 /***/ }),
@@ -763,6 +763,7 @@ module.exports = __webpack_require__(37);
 __webpack_require__(9);
 __webpack_require__(35);
 __webpack_require__(36);
+__webpack_require__(37);
 
 /***/ }),
 /* 9 */
@@ -32063,6 +32064,12 @@ $('#buy-now').click(function () {
 
 /***/ }),
 /* 37 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
