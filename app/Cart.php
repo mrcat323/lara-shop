@@ -70,4 +70,9 @@ class Cart extends Model
         $this->quantity = 1;
         $this->save();
     }
+
+    public function scopeCount($q, $v)
+    {
+        return $q->where('users_id', $v)->count();
+    }
 }

@@ -17,15 +17,16 @@ class MainController extends Controller
     /**
      * Home page
      *
+     * @param App\Products $product
+     * @param App\Users $user
+     * @param App\Cart $cart
+     *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function home(Products $product, Users $user, Cart $cart)
     {
           // STAGE 1; Initing the objects
-
-          $product = new Products;
-          $user = new Users;
-          $cart = new Cart;
+          // passed them in arguments
 
           // STAGE 2; Obtaining the arguments
 
@@ -40,7 +41,7 @@ class MainController extends Controller
           $userData = $user->getUser();
 
           $products = $product->all();
-          $countIt = $cart->where('users_id', $userData['id'])->count();
+          $countIt = $cart->count();
           return view('pages.welcome')
                     ->with('user', $userData)
                     ->with('count', $countIt)
@@ -50,11 +51,13 @@ class MainController extends Controller
     /**
      * About page
      *
+     * @param App\Users $user
+     * @param App\Cart $cart
+     *
      * @return \Illuminate\Http\Response
-     * @return int|array
      */
 
-    public function about()
+    public function about(Users $user, Cart $cart)
     {
           // STAGE 1; Initing the objects
 
@@ -72,7 +75,7 @@ class MainController extends Controller
           */
 
           $userData = $user->getUser();
-          $countIt = $cart->where('users_id', $userData['id'])->count();
+          $countIt = $cart->count();
           return view('pages.about')
                     ->with('count', $countIt)
                     ->with('user', $userData);

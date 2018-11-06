@@ -42,7 +42,7 @@ class UsersController extends Controller
         */
 
     		$userData = $user->getUser();
-    		$countIt = $cart->where('users_id', $userData['id'])->count();
+    		$countIt = $cart->count();
     		return view('pages.settings')
         				  ->with('count', $countIt)
             			->with('user', $userData);

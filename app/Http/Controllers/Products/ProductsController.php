@@ -43,7 +43,7 @@ class ProductsController extends Controller
 
         // STAGE 3; Logic Bomb; The logical Thinking;
 
-        $countIt = $cart->where('users_id', $userData['id'])->count();
+        $countIt = $cart->count();
 
         return view('products.product')
                 ->with('user', $userData)
@@ -81,7 +81,7 @@ class ProductsController extends Controller
         // put it to our method for adding that same product to the cart
 
         $cart->addItems($item, $itemId, $userData);
-        $count = $cart->where('users_id', $userData['id'])->count();
+        $count = $cart->count();
 
         $result['status'] = 1;
         $result['count'] = $count;
@@ -116,7 +116,7 @@ class ProductsController extends Controller
             $total += $p->price;
         }
 
-        $countIt = $cart->where('users_id', $userData['id'])->count();
+        $countIt = $cart->count();
         return view('products.cart')
                   ->with('user', $userData)
                   ->with('count', $countIt)
@@ -145,7 +145,7 @@ class ProductsController extends Controller
         $userData = $user->getUser();
         $itemId = $request->id;
         $delete = $cart->where('id', $itemId)->delete();
-        $count = $cart->where('users_id', $userData['id'])->count();
+        $count = $cart->count();
         if (is_null($delete)) {
             $result['status'] = 0;
             $result['msg'] = 'Error; something went wrong';

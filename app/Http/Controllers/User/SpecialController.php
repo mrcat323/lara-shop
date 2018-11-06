@@ -46,7 +46,7 @@ class SpecialController extends Controller
         if ($userData['status'] == 0) {
             return redirect('/');
         }
-        $countIt = $cart->where('users_id', $userData['id'])->count();
+        $countIt = $cart->count();
         $products = $product->all();
         return view('pages.personal')
                   ->with('user', $userData)

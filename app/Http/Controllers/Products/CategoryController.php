@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $userData = $user->getUser();
 
         $productsByCategory = $category->find($id);
-        $countIt = $cart->where('users_id', $userData['id'])->count();
+        $countIt = $cart->count();
 
         // STAGE 3; Logic bomb
 
