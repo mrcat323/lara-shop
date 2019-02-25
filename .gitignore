@@ -5,6 +5,8 @@
 /vendor
 .env
 .phpunit.result.cache
+.projectile
+*rc.js
 Homestead.json
 Homestead.yaml
 npm-debug.log
