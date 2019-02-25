@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
- 
+
 // it were plugins and vuejs itself
 Vue.use(VueRouter)
 
-import StartComponent from '../components/StartComponent.vue'
+import Home from '../components/pages/HomeComponent.vue'
+import About from '../components/pages/AboutComponent.vue'
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: '/', component: StartComponent }
+        { path: '/', component: Home },
+        { path: '/about', component: About }
     ]
 })
 
