@@ -22,5 +22,8 @@
         "vue": "^2.5.17",
         "vue-router": "3.0.1",
         "vue-template-compiler": "^2.6.6"
+    },
+    "dependencies": {
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0"
     }
 }
