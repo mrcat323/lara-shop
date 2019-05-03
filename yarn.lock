@@ -705,6 +705,11 @@
     "@webassemblyjs/wast-parser" "1.8.3"
     "@xtuc/long" "4.2.2"
 
+"@websanova/vue-auth@^2.21.14-beta":
+  version "2.21.14-beta"
+  resolved "https://registry.yarnpkg.com/@websanova/vue-auth/-/vue-auth-2.21.14-beta.tgz#315c24c5ab4c560a46d832cb1f5a702d054a1dc7"
+  integrity sha512-p2ahPPxhjknbwOWd+JAIZwqcZY9L1J8l0fYAH6tbIKz+CktvKtGlv4LeNPDtZQQF6ByWXdU1XQ/XFOwyDNjCkQ==
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -5369,6 +5374,11 @@ vm-browserify@0.0.4:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+vue-axios@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-2.1.4.tgz#a9d298f7e876f9a87feb336b37adcbce34ff9f9f"
+  integrity sha512-DS8Q+WFT3i7nS0aZ/NMmTPf2yhbtlXhj4QEZmY69au/BshsGzGjC6dXaniZaPQlErP3J3Sv1HtQ4RVrXaUTkxA==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.2"

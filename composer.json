@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "mrcat323/lara-bue": "^1.2"
+        "mrcat323/lara-bue": "^1.2",
+        "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -20,10 +20,12 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
+        "vue-axios": "^2.1.4",
         "vue-router": "3.0.1",
         "vue-template-compiler": "^2.6.6"
     },
     "dependencies": {
-        "@babel/plugin-syntax-dynamic-import": "^7.2.0"
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "@websanova/vue-auth": "^2.21.14-beta"
     }
 }
