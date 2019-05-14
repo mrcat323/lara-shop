@@ -14,3 +14,4 @@
 // with this kinda stuff we can create dynamic routes via Vue-Router
 
 Route::get('/{any}', 'MainController@init')->where('any', '.*');
+Auth::routes();
