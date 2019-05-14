@@ -1,6 +1,6 @@
 <template>
     <div>
-        <hero title="Lara-Shop" sub-title="Free, Open Source E-Commerce"></hero>
+        <hero title="Lara-Shop" sub-title="Free, Open Source E-Commerce" />
     </div>
 </template>
 
