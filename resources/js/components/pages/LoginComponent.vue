@@ -1,11 +1,59 @@
 <template>
-    <div class="container">
-        <!--  -->
-    </div>
+  <div>
+    <hero title="Login" sub-title="Sign in to make shopping" />
+<div class="container">
+  <form @submit.prevent="login" method="post">
+    <b-field horizontal label="E-Mail">
+      <b-input placeholder="Your E-Mail" v-model="email" name="email" type="email" expanded />
+    </b-field>
+    <b-field horizontal label="Password">
+      <b-input placeholder="Your password" v-model="password" name="password" type="password" expanded />
+    </b-field>
+    <b-field horizontal>
+      <p class="control">
+	<button class="button is-primary" type="submit">Login</button>
+      </p>
+    </b-field>
+  </form>
+</div>
+</div>
 </template>
 
 <script>
-export default {}
+import Hero from '../layouts/HeroLayout.vue'
+export default {
+    components: { Hero },
+    data() {
+	return {
+	    email: '',
+	    password: '',
+	    error: false,
+	    success: false,
+	    errormsg: '',
+	    errors: {}
+	}
+    },
+    methods: {
+	login() {
+	    let self = this
+	    this.$auth.login({
+		data: {
+		    email: self.email,
+		    password: self.password
+		},
+		success() {
+		    self.success = true
+		    this.$router.push({ name: 'home' })
+		},
+		error(res) {
+		    self.error = true
+		    self.errormsg = res.response.data.error
+		    self.errors = res.response.data.errors || {}
+		}
+	    })
+	}
+    }
+}
 </script>
 
 <style></style>

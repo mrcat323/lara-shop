@@ -2,5 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/about-page.js": "/about-page.js",
+    "/home-page.js": "/home-page.js",
+    "/login-page.js": "/login-page.js",
     "/register-page.js": "/register-page.js"
 }
