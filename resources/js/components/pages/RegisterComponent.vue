@@ -1,29 +1,31 @@
 <template>
-  <div>
-    <div class="hero-register">
-      <hero title="Register" sub-title="Sign up to create an account" />
+<div>
+  <div class="hero-register">
+    <hero title="Register" sub-title="Sign up to create an account" />
+  </div>
+  <div class="container section">
+    <div class="box">
+    <form @submit.prevent="register" method="post">
+      <b-field horizontal label="Name">
+	<b-input placeholder="Your Name" v-model="name" name="name" expanded />
+      </b-field>
+      <b-field horizontal label="E-Mail">
+	<b-input placeholder="Your E-Mail" v-model="email" name="email" type="email" expanded />
+      </b-field>
+      <b-field horizontal label="Password">
+	<b-input placeholder="Your password" v-model="password" name="password" type="password" expanded />
+      </b-field>
+      <b-field horizontal label="Password confirm">
+	<b-input placeholder="Confirm your password" v-model="password_confirm" name="password-confirm" type="password" expanded />
+      </b-field>
+      <b-field horizontal>
+	<p class="control">
+	  <button class="button is-medium is-primary" type="submit">Register</button>
+	</p>
+      </b-field>
+    </form>
     </div>
-<div class="container">
-  <form @submit.prevent="register" method="post">
-    <b-field horizontal label="Name">
-      <b-input placeholder="Your Name" v-model="name" name="name" expanded />
-    </b-field>
-    <b-field horizontal label="E-Mail">
-      <b-input placeholder="Your E-Mail" v-model="email" name="email" type="email" expanded />
-    </b-field>
-    <b-field horizontal label="Password">
-      <b-input placeholder="Your password" v-model="password" name="password" type="password" expanded />
-    </b-field>
-    <b-field horizontal label="Password confirm">
-      <b-input placeholder="Confirm your password" v-model="password_confirm" name="password-confirm" type="password" expanded />
-    </b-field>
-    <b-field horizontal>
-      <p class="control">
-	<button class="button is-primary" type="submit">Register</button>
-      </p>
-    </b-field>
-  </form>
-</div>
+  </div>
 </div>
 </template>
 
