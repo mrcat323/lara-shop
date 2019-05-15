@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"about-page":"about-page","home-page":"home-page","login-page":"login-page","register-page":"register-page"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"about-page~cart-page~home-page~login-page~register-page":"about-page~cart-page~home-page~login-page~register-page","about-page":"about-page","cart-page":"cart-page","home-page":"home-page","login-page":"login-page","register-page":"register-page"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -48457,19 +48457,23 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 var Home = function Home() {
-  return __webpack_require__.e(/*! import() | home-page */ "home-page").then(__webpack_require__.bind(null, /*! ../components/pages/HomeComponent.vue */ "./resources/js/components/pages/HomeComponent.vue"));
+  return Promise.all(/*! import() | home-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("home-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/HomeComponent.vue */ "./resources/js/components/pages/HomeComponent.vue"));
 };
 
 var About = function About() {
-  return __webpack_require__.e(/*! import() | about-page */ "about-page").then(__webpack_require__.bind(null, /*! ../components/pages/AboutComponent.vue */ "./resources/js/components/pages/AboutComponent.vue"));
+  return Promise.all(/*! import() | about-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("about-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/AboutComponent.vue */ "./resources/js/components/pages/AboutComponent.vue"));
 };
 
 var Register = function Register() {
-  return __webpack_require__.e(/*! import() | register-page */ "register-page").then(__webpack_require__.bind(null, /*! ../components/pages/RegisterComponent.vue */ "./resources/js/components/pages/RegisterComponent.vue"));
+  return Promise.all(/*! import() | register-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("register-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/RegisterComponent.vue */ "./resources/js/components/pages/RegisterComponent.vue"));
 };
 
 var Login = function Login() {
-  return __webpack_require__.e(/*! import() | login-page */ "login-page").then(__webpack_require__.bind(null, /*! ../components/pages/LoginComponent.vue */ "./resources/js/components/pages/LoginComponent.vue"));
+  return Promise.all(/*! import() | login-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("login-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/LoginComponent.vue */ "./resources/js/components/pages/LoginComponent.vue"));
+};
+
+var Cart = function Cart() {
+  return Promise.all(/*! import() | cart-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("cart-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/CartComponent.vue */ "./resources/js/components/pages/CartComponent.vue"));
 };
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -48499,6 +48503,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: Login,
     meta: {
       auth: false
+    }
+  }, {
+    path: '/cart',
+    name: 'cart',
+    component: Cart,
+    meta: {
+      auth: true
     }
   }]
 });
