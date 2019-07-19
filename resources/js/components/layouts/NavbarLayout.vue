@@ -28,7 +28,7 @@
             v-for="element in elements"
             :key="element.id"
             >
-            {{ element.name }}
+            {{ element.title }}
           </router-link>
         </div>
 	
@@ -46,7 +46,7 @@
               <router-link :to="{ name: 'cart' }">Cart <b-icon icon="cart-outline" /></router-link>
 	    </b-dropdown-item>
 	    <b-dropdown-item aria-role="menu-item">
-	      <a @click="$auth.logout()">Logout</a>
+	      <a @click="logout()">Logout</a>
 	    </b-dropdown-item>
           </b-dropdown>
           <div v-else class="navbar-item">
@@ -78,23 +78,38 @@ export default {
         return {
             elements: [
                 {
-                    name: 'Home',
+                    id: 1,
+                    title: 'Home',
                     path: '/'
                 },
                 {
-                    name: 'About',
+                    id: 2,
+                    title: 'About',
                     path: '/about'
                 },
                 {
-                    name: 'Categories',
+                    id: 3,
+                    title: 'Categories',
                     path: '/categories/index'
                 },
                 {
-                    name: 'Products',
+                    id: 4,
+                    title: 'Products',
                     path: '/products/index'
                 }
             ]
         }
+    },
+    methods: {
+      logout() {
+        this.$auth.logout({
+          makeRequest: true,
+          params: {},
+          success: function () {},
+          error: function () {},
+          redirect: '/'
+        })
+      }
     }
 }
 </script>

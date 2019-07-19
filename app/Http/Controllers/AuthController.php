@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 use Hash;
 
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
-use JWTAuth;
+use Auth;
 
 use Illuminate\Support\Facades\Validator;
 
@@ -43,7 +43,7 @@ class AuthController extends Controller
         $credentails = $request->only('email', 'password');
 
         if ($token = $this->guard()->attempt($credentails)) {
-            return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
+            return response()->json(['status' => 'success', 'token' => $token], 200)->header('Authorization', $token);
         }
         return response()->json(['error' => 'login_error'], 401);
     }
@@ -57,7 +57,7 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        if ($token = JWTAuth::getToken()) {
+        if ($token = $this->guard()->refresh()) {
             return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
         }
         

@@ -26,34 +26,34 @@ import Hero from '../layouts/HeroLayout.vue'
 export default {
     components: { Hero },
     data() {
-	return {
-	    email: '',
-	    password: '',
-	    error: false,
-	    success: false,
-	    errormsg: '',
-	    errors: {}
-	}
+		return {
+		    email: '',
+		    password: '',
+		    error: false,
+		    success: false,
+		    errormsg: '',
+		    errors: {}
+		}
     },
     methods: {
-	login() {
-	    let self = this
-	    this.$auth.login({
-		data: {
-		    email: self.email,
-		    password: self.password
-		},
-		success() {
-		    self.success = true
-		    this.$router.push({ name: 'home' })
-		},
-		error(res) {
-		    self.error = true
-		    self.errormsg = res.response.data.error
-		    self.errors = res.response.data.errors || {}
+		login() {
+		    let self = this
+		    this.$auth.login({
+				data: {
+				    email: self.email,
+				    password: self.password
+				},
+				success() {
+				    self.success = true
+				    this.$router.push({ name: 'home' })
+				},
+				error(res) {
+				    self.error = true
+				    self.errormsg = res.response.data.error
+				    self.errors = res.response.data.errors || {}
+				}
+		    })
 		}
-	    })
-	}
     }
 }
 </script>
