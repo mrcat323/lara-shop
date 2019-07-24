@@ -8,3 +8,10 @@ and open the template in the editor.
     Author     : mrcat323
 */
 
+$pt: 20, 25;
+
+@each $padding in $pt {
+	.pt-#{$padding} {
+		padding-top: $padding + px;
+	}
+}
