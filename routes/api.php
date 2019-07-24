@@ -30,5 +30,8 @@ Route::prefix('product')->group(function () {
 
 Route::prefix('category')->group(function () {
 	Route::get('all', 'CategoryController@index');
+	Route::post('store', 'CategoryController@store');
+	Route::post('update', 'CategoryController@update');
+	Route::post('destroy', 'CategoryController@destroy');
 	Route::get('{id}', 'CategoryController@show');
 });
