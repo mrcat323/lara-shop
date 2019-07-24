@@ -30,6 +30,18 @@
             >
             {{ element.title }}
           </router-link>
+          <b-dropdown hoverable aria-role="menu">
+            <a class="navbar-item" slot="trigger">
+                <span>Categories</span>
+                <b-icon icon="menu-down"></b-icon>
+            </a>
+
+            <b-dropdown-item v-for="category in categories" :key="category.id" aria-role="listitem">
+                <router-link :to="{ name: 'category', params: { id: category.id } }">
+                    {{ category.name }}
+                </router-link>
+            </b-dropdown-item>
+          </b-dropdown>
         </div>
 	
         <div class="navbar-end">
@@ -73,6 +85,8 @@
 </template>
 
 <script>
+import { gatherCategories } from '../mixins/gather-categories.js'
+
 export default {
     data() {
         return {
@@ -89,17 +103,13 @@ export default {
                 },
                 {
                     id: 3,
-                    title: 'Categories',
-                    path: '/categories/index'
-                },
-                {
-                    id: 4,
                     title: 'Products',
-                    path: '/products/index'
+                    path: '/products/'
                 }
             ]
         }
     },
+    mixins: [gatherCategories],
     methods: {
       logout() {
         this.$auth.logout({
@@ -110,6 +120,10 @@ export default {
           redirect: '/'
         })
       }
+    },
+
+    created() {
+      console.log(this.categories)
     }
 }
 </script>

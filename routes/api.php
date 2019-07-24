@@ -23,3 +23,12 @@ Route::prefix('auth')->group(function () {
         Route::post('logout', 'AuthController@logout');
     });
 });
+
+Route::prefix('product')->group(function () {
+	Route::get('all', 'ProductController@index');
+});
+
+Route::prefix('category')->group(function () {
+	Route::get('all', 'CategoryController@index');
+	Route::get('{id}', 'CategoryController@show');
+});
