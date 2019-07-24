@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App;
-
 
 use App\User;
 
@@ -14,9 +12,11 @@ class Product extends Model
 {
     protected $table = 'products';
     public $timestamps = true;
+    protected $fillable = ['title', 'about', 'price'];
 
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
+
 }
