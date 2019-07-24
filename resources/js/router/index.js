@@ -11,6 +11,8 @@ let Login = () => import (/* webpackChunkName: "login-page" */ '../components/pa
 let Cart = () => import(/* webpackChunkName: "cart-page" */ '../components/pages/CartComponent.vue')
 let Category = () => import(/* webpackChunkName: "category" */ '../components/pages/Categories/Category.vue')
 let Products = () => import(/* webpackChunkName: "products" */ '../components/pages/Products/ListProducts.vue')
+let CreateProduct = () => import(/* webpackChunkName: "create-product" */ '../components/pages/Products/CreateProduct.vue')
+let EditProduct = () => import(/* webpackChunkName: "edit-product" */ '../components/pages/Products/EditProduct.vue')
 let CreateCategory = () => import(/* webpackChunkName: "create-category" */ '../components/pages/Categories/CreateCategory.vue')
 let EditCategory = () => import(/* webpackChunkName: "edit-category" */ '../components/pages/Categories/EditCategory.vue')
 
@@ -23,6 +25,8 @@ const router = new VueRouter({
 		{ path: '/login', name: 'login', component: Login, meta: { auth: false } },
 		{ path: '/cart', name: 'cart', component: Cart, meta: { auth: true } },
 		{ path: '/products', name: 'products', component: Products, meta: { auth: undefined } },
+		{ path: '/product/create', name: 'create-product', component: CreateProduct, meta: { auth: true } },
+		{ path: '/product/:id/edit', name: 'edit-product', component: EditProduct, meta: { auth: true } },
 		{ path: '/category/:id', name: 'category', component: Category, meta: { auth: undefined } },
 		{ path: '/category/create', name: 'create-category', component: CreateCategory, meta: { auth: true } },
 		{ path: '/category/:id/edit', name: 'edit-category', component: EditCategory, meta: { auth: true } }

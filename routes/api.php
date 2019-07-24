@@ -26,6 +26,10 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('product')->group(function () {
 	Route::get('all', 'ProductController@index');
+	Route::post('store', 'ProductController@store');
+	Route::post('update', 'ProductController@update');
+	Route::post('destroy', 'ProductController@destroy');
+	Route::get('{id}', 'ProductController@show');
 });
 
 Route::prefix('category')->group(function () {
