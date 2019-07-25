@@ -2,7 +2,16 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/about-page.js": "/about-page.js",
+    "/about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9.js": "/about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9.js",
+    "/cart-page.js": "/cart-page.js",
+    "/category.js": "/category.js",
+    "/create-category.js": "/create-category.js",
+    "/create-product.js": "/create-product.js",
+    "/edit-category.js": "/edit-category.js",
+    "/edit-product.js": "/edit-product.js",
     "/home-page.js": "/home-page.js",
     "/login-page.js": "/login-page.js",
-    "/register-page.js": "/register-page.js"
+    "/products.js": "/products.js",
+    "/register-page.js": "/register-page.js",
+    "/verified-account.js": "/verified-account.js"
 }

@@ -41,6 +41,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -70,12 +74,6 @@ __webpack_require__.r(__webpack_exports__);
         },
         success: function success() {
           self.success = true;
-          this.$router.push({
-            name: 'login',
-            params: {
-              successRegistrationRedirect: true
-            }
-          });
         },
         error: function error(res) {
           self.error = true;
@@ -119,128 +117,152 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "container section" }, [
-      _c("div", { staticClass: "box" }, [
-        _c(
-          "form",
-          {
-            attrs: { method: "post" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.register($event)
-              }
-            }
-          },
-          [
-            _c(
-              "b-field",
-              { attrs: { horizontal: "", label: "Name" } },
+    _c(
+      "div",
+      { staticClass: "container section" },
+      [
+        _vm.success
+          ? _c(
+              "b-message",
+              {
+                attrs: {
+                  "has-icon": "",
+                  title: "Success",
+                  type: "is-warning",
+                  "aria-close-label": "Close message"
+                }
+              },
               [
-                _c("b-input", {
-                  attrs: {
-                    placeholder: "Your Name",
-                    name: "name",
-                    expanded: ""
-                  },
-                  model: {
-                    value: _vm.name,
-                    callback: function($$v) {
-                      _vm.name = $$v
-                    },
-                    expression: "name"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { horizontal: "", label: "E-Mail" } },
-              [
-                _c("b-input", {
-                  attrs: {
-                    placeholder: "Your E-Mail",
-                    name: "email",
-                    type: "email",
-                    expanded: ""
-                  },
-                  model: {
-                    value: _vm.email,
-                    callback: function($$v) {
-                      _vm.email = $$v
-                    },
-                    expression: "email"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { horizontal: "", label: "Password" } },
-              [
-                _c("b-input", {
-                  attrs: {
-                    placeholder: "Your password",
-                    name: "password",
-                    type: "password",
-                    expanded: ""
-                  },
-                  model: {
-                    value: _vm.password,
-                    callback: function($$v) {
-                      _vm.password = $$v
-                    },
-                    expression: "password"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-field",
-              { attrs: { horizontal: "", label: "Password confirm" } },
-              [
-                _c("b-input", {
-                  attrs: {
-                    placeholder: "Confirm your password",
-                    name: "password-confirm",
-                    type: "password",
-                    expanded: ""
-                  },
-                  model: {
-                    value: _vm.password_confirm,
-                    callback: function($$v) {
-                      _vm.password_confirm = $$v
-                    },
-                    expression: "password_confirm"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("b-field", { attrs: { horizontal: "" } }, [
-              _c("p", { staticClass: "control" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "button is-medium is-primary",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("Register")]
+                _vm._v(
+                  "\n    \tPlease make sure you verified your E-Mail address. Please check out your E-Mail to verify your account\n  \t"
                 )
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "box" }, [
+          _c(
+            "form",
+            {
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.register($event)
+                }
+              }
+            },
+            [
+              _c(
+                "b-field",
+                { attrs: { horizontal: "", label: "Name" } },
+                [
+                  _c("b-input", {
+                    attrs: {
+                      placeholder: "Your Name",
+                      name: "name",
+                      expanded: ""
+                    },
+                    model: {
+                      value: _vm.name,
+                      callback: function($$v) {
+                        _vm.name = $$v
+                      },
+                      expression: "name"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-field",
+                { attrs: { horizontal: "", label: "E-Mail" } },
+                [
+                  _c("b-input", {
+                    attrs: {
+                      placeholder: "Your E-Mail",
+                      name: "email",
+                      type: "email",
+                      expanded: ""
+                    },
+                    model: {
+                      value: _vm.email,
+                      callback: function($$v) {
+                        _vm.email = $$v
+                      },
+                      expression: "email"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-field",
+                { attrs: { horizontal: "", label: "Password" } },
+                [
+                  _c("b-input", {
+                    attrs: {
+                      placeholder: "Your password",
+                      name: "password",
+                      type: "password",
+                      expanded: ""
+                    },
+                    model: {
+                      value: _vm.password,
+                      callback: function($$v) {
+                        _vm.password = $$v
+                      },
+                      expression: "password"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-field",
+                { attrs: { horizontal: "", label: "Password confirm" } },
+                [
+                  _c("b-input", {
+                    attrs: {
+                      placeholder: "Confirm your password",
+                      name: "password-confirm",
+                      type: "password",
+                      expanded: ""
+                    },
+                    model: {
+                      value: _vm.password_confirm,
+                      callback: function($$v) {
+                        _vm.password_confirm = $$v
+                      },
+                      expression: "password_confirm"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("b-field", { attrs: { horizontal: "" } }, [
+                _c("p", { staticClass: "control" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button is-medium is-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Register")]
+                  )
+                ])
               ])
-            ])
-          ],
-          1
-        )
-      ])
-    ])
+            ],
+            1
+          )
+        ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

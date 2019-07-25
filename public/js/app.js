@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"about-page~cart-page~home-page~login-page~register-page":"about-page~cart-page~home-page~login-page~register-page","about-page":"about-page","cart-page":"cart-page","home-page":"home-page","login-page":"login-page","register-page":"register-page"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9":"about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9","about-page":"about-page","cart-page":"cart-page","category":"category","create-category":"create-category","create-product":"create-product","edit-category":"edit-category","edit-product":"edit-product","home-page":"home-page","login-page":"login-page","products":"products","register-page":"register-page","verified-account":"verified-account"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -48260,14 +48260,21 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.router = _router__WEBPACK_IMPORTED_MODULE_3__["default"];
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_7___default.a, axios__WEBPACK_IMPORTED_MODULE_4___default.a);
-axios__WEBPACK_IMPORTED_MODULE_4___default.a.defaults.baseURL = "http://127.0.0.1:8000/api";
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.router = _router__WEBPACK_IMPORTED_MODULE_3__["default"];
+axios__WEBPACK_IMPORTED_MODULE_4___default.a.defaults.baseURL = 'http://127.0.0.1:8000/api';
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_websanova_vue_auth__WEBPACK_IMPORTED_MODULE_6___default.a, _auth__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use({
+  install: function install(Vue) {
+    Vue.prototype.$api = axios__WEBPACK_IMPORTED_MODULE_4___default.a.create({
+      baseURL: 'http://127.0.0.1:8000/api'
+    });
+  }
+});
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(buefy__WEBPACK_IMPORTED_MODULE_1___default.a); // now the components turn
 
 
@@ -48308,7 +48315,7 @@ var config = {
   registerData: {
     url: 'auth/register',
     method: 'POST',
-    redirect: '/login'
+    redirect: ''
   },
   loginData: {
     url: 'auth/login',
@@ -48457,23 +48464,51 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 var Home = function Home() {
-  return Promise.all(/*! import() | home-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("home-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/HomeComponent.vue */ "./resources/js/components/pages/HomeComponent.vue"));
+  return Promise.all(/*! import() | home-page */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("home-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/HomeComponent.vue */ "./resources/js/components/pages/HomeComponent.vue"));
 };
 
 var About = function About() {
-  return Promise.all(/*! import() | about-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("about-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/AboutComponent.vue */ "./resources/js/components/pages/AboutComponent.vue"));
+  return Promise.all(/*! import() | about-page */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("about-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/AboutComponent.vue */ "./resources/js/components/pages/AboutComponent.vue"));
 };
 
 var Register = function Register() {
-  return Promise.all(/*! import() | register-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("register-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/RegisterComponent.vue */ "./resources/js/components/pages/RegisterComponent.vue"));
+  return Promise.all(/*! import() | register-page */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("register-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/RegisterComponent.vue */ "./resources/js/components/pages/RegisterComponent.vue"));
 };
 
 var Login = function Login() {
-  return Promise.all(/*! import() | login-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("login-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/LoginComponent.vue */ "./resources/js/components/pages/LoginComponent.vue"));
+  return Promise.all(/*! import() | login-page */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("login-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/LoginComponent.vue */ "./resources/js/components/pages/LoginComponent.vue"));
+};
+
+var VerifiedAccount = function VerifiedAccount() {
+  return Promise.all(/*! import() | verified-account */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("verified-account")]).then(__webpack_require__.bind(null, /*! ../components/pages/VerifiedAccountComponent.vue */ "./resources/js/components/pages/VerifiedAccountComponent.vue"));
 };
 
 var Cart = function Cart() {
-  return Promise.all(/*! import() | cart-page */[__webpack_require__.e("about-page~cart-page~home-page~login-page~register-page"), __webpack_require__.e("cart-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/CartComponent.vue */ "./resources/js/components/pages/CartComponent.vue"));
+  return Promise.all(/*! import() | cart-page */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("cart-page")]).then(__webpack_require__.bind(null, /*! ../components/pages/CartComponent.vue */ "./resources/js/components/pages/CartComponent.vue"));
+};
+
+var Category = function Category() {
+  return Promise.all(/*! import() | category */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("category")]).then(__webpack_require__.bind(null, /*! ../components/pages/Categories/Category.vue */ "./resources/js/components/pages/Categories/Category.vue"));
+};
+
+var Products = function Products() {
+  return Promise.all(/*! import() | products */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("products")]).then(__webpack_require__.bind(null, /*! ../components/pages/Products/ListProducts.vue */ "./resources/js/components/pages/Products/ListProducts.vue"));
+};
+
+var CreateProduct = function CreateProduct() {
+  return Promise.all(/*! import() | create-product */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("create-product")]).then(__webpack_require__.bind(null, /*! ../components/pages/Products/CreateProduct.vue */ "./resources/js/components/pages/Products/CreateProduct.vue"));
+};
+
+var EditProduct = function EditProduct() {
+  return Promise.all(/*! import() | edit-product */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("edit-product")]).then(__webpack_require__.bind(null, /*! ../components/pages/Products/EditProduct.vue */ "./resources/js/components/pages/Products/EditProduct.vue"));
+};
+
+var CreateCategory = function CreateCategory() {
+  return Promise.all(/*! import() | create-category */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("create-category")]).then(__webpack_require__.bind(null, /*! ../components/pages/Categories/CreateCategory.vue */ "./resources/js/components/pages/Categories/CreateCategory.vue"));
+};
+
+var EditCategory = function EditCategory() {
+  return Promise.all(/*! import() | edit-category */[__webpack_require__.e("about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"), __webpack_require__.e("edit-category")]).then(__webpack_require__.bind(null, /*! ../components/pages/Categories/EditCategory.vue */ "./resources/js/components/pages/Categories/EditCategory.vue"));
 };
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -48510,6 +48545,56 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: Cart,
     meta: {
       auth: true
+    }
+  }, {
+    path: '/products',
+    name: 'products',
+    component: Products,
+    meta: {
+      auth: undefined
+    }
+  }, {
+    path: '/product/create',
+    name: 'create-product',
+    component: CreateProduct,
+    meta: {
+      auth: true
+    }
+  }, {
+    path: '/product/:id/edit',
+    name: 'edit-product',
+    component: EditProduct,
+    meta: {
+      auth: true
+    }
+  }, {
+    path: '/category/:id',
+    name: 'category',
+    component: Category,
+    meta: {
+      auth: undefined
+    },
+    children: [{
+      path: 'edit',
+      name: 'edit-category',
+      component: EditCategory,
+      meta: {
+        auth: true
+      }
+    }]
+  }, {
+    path: '/category/create',
+    name: 'create-category',
+    component: CreateCategory,
+    meta: {
+      auth: true
+    }
+  }, {
+    path: '/verify/success',
+    name: 'verified-account',
+    component: VerifiedAccount,
+    meta: {
+      auth: false
     }
   }]
 });
