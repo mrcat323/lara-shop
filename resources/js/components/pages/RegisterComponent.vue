@@ -3,7 +3,11 @@
   <div class="hero-register">
     <hero title="Register" sub-title="Sign up to create an account" />
   </div>
+  
   <div class="container section">
+  	<b-message v-if="success" has-icon title="Success" type="is-warning" aria-close-label="Close message">
+    	Please make sure you verified your E-Mail address. Please check out your E-Mail to verify your account
+  	</b-message>
     <div class="box">
     <form @submit.prevent="register" method="post">
       <b-field horizontal label="Name">
@@ -31,6 +35,7 @@
 
 <script>
 import Hero from '../layouts/HeroLayout.vue'
+
 export default {
     components: { Hero },
     data() {
@@ -57,7 +62,6 @@ export default {
 		},
 		success() {
 		    self.success = true
-		    this.$router.push({ name: 'login', params: {successRegistrationRedirect: true}})
 		},
 		error(res) {
 		    self.error = true
