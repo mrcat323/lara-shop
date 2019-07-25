@@ -21,11 +21,11 @@ Vue.use(VueAxios, axios)
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
 Vue.use(VueAuth, auth)
 Vue.use({
-	install(Vue) {
-		Vue.prototype.$api = axios.create({
-			baseURL: 'http://127.0.0.1:8000/api'
-		})
-	}
+    install(Vue) {
+        Vue.prototype.$api = axios.create({
+            baseURL: 'http://127.0.0.1:8000/api'
+        })
+    }
 })
 Vue.use(Buefy)
 
