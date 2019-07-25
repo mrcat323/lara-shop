@@ -57,8 +57,8 @@
 	    <b-dropdown-item aria-role="menu-item">
               <router-link :to="{ name: 'cart' }">Cart <b-icon icon="cart-outline" /></router-link>
 	    </b-dropdown-item>
-	    <b-dropdown-item aria-role="menu-item">
-	      <a @click="logout()">Logout</a>
+	    <b-dropdown-item @click="logout()" aria-role="menu-item">
+	      <a>Logout</a>
 	    </b-dropdown-item>
           </b-dropdown>
           <div v-else class="navbar-item">
