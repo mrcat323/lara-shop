@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 use Hash;
 
-// use Illuminate\Support\Facades\Auth;
-
 use Auth;
 
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -33,6 +33,8 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
+
+        $user->sendVerificationCode();
 
         return response()->json(['status' => 'success'], 200);
                              

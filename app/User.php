@@ -5,6 +5,12 @@ namespace App;
 
 use App\Cart;
 
+use Illuminate\Support\Str;
+
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,6 +18,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
+use App\Mail\VerifyUser;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -56,6 +64,18 @@ class User extends Authenticatable implements JWTSubject
 
     public function cartItems()
     {
-        return $this->hasOne(Cart::class);
+        return $this->hasMany(Cart::class);
     }
+
+    public function sendVerificationCode() 
+    {
+        $token = Str::random(60);
+
+        DB::table('verify_users')->insert([
+            'email' => $this->email,
+            'code' => $token
+        ]);
+        
+        Mail::to($this)->send(new VerifyUser($this, $token));
+    }   
 }
