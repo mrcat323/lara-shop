@@ -39,3 +39,5 @@ Route::prefix('category')->group(function () {
 	Route::post('destroy', 'CategoryController@destroy');
 	Route::get('{id}', 'CategoryController@show');
 });
+
+Route::get('/verify/account/{token}', 'AuthController@verifyUser');

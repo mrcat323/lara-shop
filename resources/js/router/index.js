@@ -33,6 +33,7 @@ const router = new VueRouter({
 			{ path: 'edit', name: 'edit-category', component: EditCategory, meta: { auth: true } }
 		] },
 		{ path: '/category/create', name: 'create-category', component: CreateCategory, meta: { auth: true } },
+		{ path: '/verify/success', name: 'verified-account', component: VerifiedAccount, meta: { auth: false } } 
     ]
 })
 
