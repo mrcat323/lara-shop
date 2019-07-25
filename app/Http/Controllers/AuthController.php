@@ -73,6 +73,21 @@ class AuthController extends Controller
         return response()->json(['status' => 'success', 'data' => $user], 200);
     }
 
+    public function verifyUser($token) 
+    {
+        $user = DB::table('verify_users')->where('code', $token)->first();
+
+        if ($user) {
+            $verifiedUser = User::where('email', $user->email)->first();
+            $verifiedUser->email_verified_at = now();
+            $verifiedUser->save();
+
+            return redirect('/verify/success');
+        }
+
+        return response()->json(['status' => 'what the hell?!']);
+    }
+
     private function guard()
     {
         return Auth::guard();
