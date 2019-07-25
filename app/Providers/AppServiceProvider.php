@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\CategoryInterface',
             'App\Repositories\CategoryRepository'
         );
+
+        Schema::defaultStringLength(255);
     }
 
     /**
