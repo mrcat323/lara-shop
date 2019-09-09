@@ -73,6 +73,23 @@ __webpack_require__.r(__webpack_exports__);
       }).catch(function (err) {
         return console.log(err);
       });
+    },
+    addToCart: function addToCart(id) {
+      var _this2 = this;
+
+      this.$http.post('/cart/store').then(function (res) {
+        if (res.data.status == 0) {
+          _this2.$dialog.alert({
+            title: 'Error',
+            message: res.data.msg,
+            confirmText: 'OK'
+          });
+        }
+
+        console.log(res.data.products);
+      }).catch(function (err) {
+        return console.log(err);
+      });
     }
   },
   components: {
@@ -171,15 +188,21 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass: "card-footer-item",
-                            attrs: { href: "#" }
-                          },
-                          [_c("b-icon", { attrs: { icon: "cart" } })],
-                          1
-                        )
+                        _vm.$auth.check()
+                          ? _c(
+                              "a",
+                              {
+                                staticClass: "card-footer-item",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.addToCart(product.id)
+                                  }
+                                }
+                              },
+                              [_c("b-icon", { attrs: { icon: "cart" } })],
+                              1
+                            )
+                          : _vm._e()
                       ],
                       1
                     )

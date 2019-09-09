@@ -48334,6 +48334,7 @@ var config = {
     method: 'GET',
     enabled: true
   },
+  // addToCartData: {url: 'cart/store', method: 'POST', makeRequest: true},
   refreshData: {
     url: 'auth/refresh',
     method: 'GET',

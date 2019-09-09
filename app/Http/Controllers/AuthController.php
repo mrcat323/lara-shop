@@ -3,15 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-
 use Illuminate\Http\Request;
-
 use Hash;
-
 use Auth;
-
 use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
@@ -37,7 +32,6 @@ class AuthController extends Controller
         $user->sendVerificationCode();
 
         return response()->json(['status' => 'success'], 200);
-                             
     }
 
     public function login(Request $request)
@@ -62,7 +56,7 @@ class AuthController extends Controller
         if ($token = $this->guard()->refresh()) {
             return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
         }
-        
+
         return response()->json(['error' => 'refresh_token_error'], 401);
     }
 
@@ -73,7 +67,13 @@ class AuthController extends Controller
         return response()->json(['status' => 'success', 'data' => $user], 200);
     }
 
-    public function verifyUser($token) 
+    public function store(Request $request)
+    {
+        $token = $this->guard()->refresh();
+        return response()->json(['user' => auth()->user()], 200)->header('Authorization', $token);
+    }
+
+    public function verifyUser($token)
     {
         $user = DB::table('verify_users')->where('code', $token)->first();
 

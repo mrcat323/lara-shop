@@ -149,15 +149,14 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("footer", { staticClass: "card-footer" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "card-footer-item",
-                          attrs: { href: "#" }
-                        },
-                        [_c("b-icon", { attrs: { icon: "cart" } })],
-                        1
-                      )
+                      _vm.$auth.check()
+                        ? _c(
+                            "a",
+                            { staticClass: "card-footer-item" },
+                            [_c("b-icon", { attrs: { icon: "cart" } })],
+                            1
+                          )
+                        : _vm._e()
                     ])
                   ])
                 ]

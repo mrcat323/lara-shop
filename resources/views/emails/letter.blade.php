@@ -7,7 +7,9 @@
 
 **To be able to use all features, please verify your account by clicking the button below**
 
-@component('mail::button', ["url" => getenv('APP_URL') ."/api/verify/account/${token}", "color" => "success"])
+**You've got 2 days to verify your account, otherwise verification link will expire**
+
+@component('mail::button', ["url" => URL::temporarySignedRoute('verify.via.token', now()->addDays(2), ['token' => $token]), "color" => "success"])
 Verify
 @endcomponent
 

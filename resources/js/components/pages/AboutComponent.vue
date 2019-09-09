@@ -10,8 +10,15 @@ import Hero from '../layouts/HeroLayout.vue'
 export default {
     data() {
         return {
-            title: 'About',
+            title: "About",
             moreInfo: 'This is about page for you!'
+        }
+    },
+    computed: {
+        lorem() {
+            if (moreInfo == 'good') {
+                return false;
+            }
         }
     },
     components: { Hero }

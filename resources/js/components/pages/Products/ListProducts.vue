@@ -30,7 +30,7 @@
 					  	class="card-footer-item"
 					  	>{{ product.category.name }}
 					  </router-link>
-					  	 <a href="#" class="card-footer-item">
+					  	 <a v-if="$auth.check()" @click="addToCart(product.id)" class="card-footer-item">
 					  	 	<b-icon icon="cart"></b-icon>
 					  	 </a>
 					  </footer>
@@ -57,6 +57,21 @@ export default {
     	gatherProducts() {
     		this.$api.get('/product/all')
     		.then(res => this.products = res.data.products)
+    		.catch(err => console.log(err))
+    	},
+
+    	addToCart(id) {
+    		this.$http.post('/cart/store')
+    		.then(res => {
+    			if (res.data.status == 0) {
+    				this.$dialog.alert({
+	                    title: 'Error',
+	                    message: res.data.msg,
+	                    confirmText: 'OK'
+	                })
+    			}
+    			console.log(res.data.products)
+    		})
     		.catch(err => console.log(err))
     	}
     },

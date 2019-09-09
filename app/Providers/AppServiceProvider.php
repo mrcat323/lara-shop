@@ -15,17 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'App\Repositories\ProductInterface',
-            'App\Repositories\ProductRepository'
-        );
-
-        $this->app->bind(
-            'App\Repositories\CategoryInterface',
-            'App\Repositories\CategoryRepository'
-        );
-
-        Schema::defaultStringLength(255);
+        // 
     }
 
     /**

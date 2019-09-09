@@ -62,9 +62,24 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function cartItems()
+    public function cart()
     {
-        return $this->hasMany(Cart::class);
+        return $this->hasOne(Cart::class);
+    }
+
+    public function createCart() 
+    {
+        return $this->cart()->save(new Cart);
+    }
+
+    public function getUser() 
+    {
+        return $this->find(auth()->user()->id);
+    }
+
+    public function checkForVerification() 
+    {
+        return (bool) $this->email_verified_at;
     }
 
     public function sendVerificationCode() 

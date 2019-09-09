@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-        "@websanova/vue-auth": "^2.21.14-beta"
+        "@websanova/vue-auth": "^2.21.14-beta",
+        "eslint": "^6.3.0"
     }
 }

@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Category;
-
 use App\Repositories\CategoryInterface;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-
     private $category;
 
-    public function __construct(CategoryInterface $category) 
+    public function __construct(CategoryInterface $category)
     {
         $this->category = $category;
     }
 
-    public function index() 
+    public function index()
     {
         $categories = $this->category->getAll();
 
@@ -26,17 +22,17 @@ class CategoryController extends Controller
         return $result;
     }
 
-    public function show($id) 
+    public function show($id)
     {
         $category = $this->category->getById($id);
         $products = $category->products;
-        
+
         $result['category'] = $category;
         $result['products'] = $products;
         return $result;
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $data = [
             'name' => $request->name
@@ -49,7 +45,7 @@ class CategoryController extends Controller
         return $result;
     }
 
-    public function update(Request $request) 
+    public function update(Request $request)
     {
         $category = $this->category->getById($request->id);
 
@@ -60,7 +56,7 @@ class CategoryController extends Controller
         return $result;
     }
 
-    public function destroy(Request $request) 
+    public function destroy(Request $request)
     {
         $id = $request->id;
 

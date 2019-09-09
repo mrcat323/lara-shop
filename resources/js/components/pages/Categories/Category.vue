@@ -25,7 +25,7 @@
 					    </div>
 					  </div>
 					  <footer class="card-footer">
-					  	 <a href="#" class="card-footer-item">
+					  	 <a v-if="$auth.check()" class="card-footer-item">
 					  	 	<b-icon icon="cart"></b-icon>
 					  	 </a>
 					  </footer>

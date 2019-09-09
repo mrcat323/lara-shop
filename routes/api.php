@@ -21,6 +21,7 @@ Route::prefix('auth')->group(function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('user', 'AuthController@user');
         Route::post('logout', 'AuthController@logout');
+        Route::post('store', 'CartController@store');
     });
 });
 
@@ -40,4 +41,10 @@ Route::prefix('category')->group(function () {
 	Route::get('{id}', 'CategoryController@show');
 });
 
-Route::get('/verify/account/{token}', 'AuthController@verifyUser');
+Route::prefix('cart')->group(function () {
+	Route::get('all', 'CartController@index');
+	Route::post('store', 'CartController@store')->middleware('auth:api');
+	Route::post('destroy', 'CartController@destroy');
+});
+
+Route::get('/verify/account/{token}', 'AuthController@verifyUser')->name('verify.via.token')->middleware('signed');
