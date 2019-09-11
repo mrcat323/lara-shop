@@ -22,7 +22,6 @@
 
 <script>
 import Hero from '../../layouts/HeroLayout.vue'
-import axios from 'axios'
 
 export default {
     data() {

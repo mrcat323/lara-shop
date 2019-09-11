@@ -42,7 +42,7 @@ export default {
 
     methods: {
         submit() {
-            this.$api.post('/category/update', {
+            this.$http.patch(`/category/${this.category.id}`, {
                 id: this.category.id,
                 name: this.category.name
             })
@@ -57,10 +57,10 @@ export default {
         },
 
         deleteCategory(id) {
-            this.$api.post('/category/destroy', { id })
+            this.$api.delete(`/category/${id}`)
             .then(res => {
-                this.deleteStatus = true 
-                this.message = res.data.msg 
+                this.deleteStatus = true
+                this.message = res.data.msg
             })
             .catch(err => console.log(err))
             // console.log(id)
@@ -69,7 +69,7 @@ export default {
     components: { Hero, Delete },
 
     created() {
-        let id = this.$route.params.id 
+        let id = this.$route.params.id
         this.gatherCategoryDetails(id)
     }
 }
