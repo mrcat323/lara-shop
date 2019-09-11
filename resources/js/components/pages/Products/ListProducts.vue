@@ -25,8 +25,8 @@
 					    </div>
 					  </div>
 					  <footer class="card-footer">
-					  	<router-link 
-					  	:to="{ name: 'category',  params: { id: product.category.id }  }" 
+					  	<router-link
+					  	:to="{ name: 'category',  params: { id: product.category.id }  }"
 					  	class="card-footer-item"
 					  	>{{ product.category.name }}
 					  </router-link>
@@ -61,7 +61,7 @@ export default {
     	},
 
     	addToCart(id) {
-    		this.$http.post('/cart/store')
+    		this.$http.post('/cart/store', { id })
     		.then(res => {
     			if (res.data.status == 0) {
     				this.$dialog.alert({

@@ -2,9 +2,6 @@
 
 namespace App;
 
-
-use App\User;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
@@ -17,8 +14,12 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function products() 
+    public function products()
     {
-    	return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)
+            ->using(CartProduct::class)
+            ->as('product')
+            ->withPivot('quantity')
+            ->withTimestamps();
     }
 }

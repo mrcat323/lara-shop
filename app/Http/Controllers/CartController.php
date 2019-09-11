@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CartProduct;
 use Illuminate\Http\Request;
 use App\Product;
 use App\User;
-use Auth;
 
 class CartController extends Controller
 {
@@ -24,26 +24,40 @@ class CartController extends Controller
 
         $cartItems = $user->cart->products;
 
-        $result['items'] = $cartItems;
-        return $result;
+        return response()->json([
+            'items' => $cartItems
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, CartProduct $cartProduct)
     {
-        $user = User::find(auth()->user()->id);
+        $user = auth()->user();
         $cart = $user->cart ? $user->cart : $user->createCart();
 
         if ($user->checkForVerification()) {
+            if ($cartProduct->whereProductId($request->id)->count()) {
+                $cartProduct->increment('quantity');
+
+                return response()->json([
+                    'status' => 1,
+                    'msg' => 'Same item have been added one more time'
+                ]);
+
+            }
+
             $cart->products()->attach($request->id);
 
-            $result['status'] = 1;
-            $result['msg'] = 'An item added to cart';
-            return $result;
+            return response()->json([
+                'status' => 1,
+                'product' => $cart->products->find($request->id)->product,
+                'msg' => 'An item added to cart'
+            ]);
         }
 
-        $result['status'] = 0;
-        $result['msg'] = 'Please verify your account to add products to your cart!';
-        return $result;
+        return response()->json([
+            'status' => 0,
+            'msg' => 'Please verify your account to add products to your cart!'
+        ]);
     }
 
     public function destroy(Request $request)
@@ -52,13 +66,10 @@ class CartController extends Controller
 
         $user->cart->products()->detach($request->id);
 
-        $result['status'] = 1;
-        $result['msg'] = 'An item removed to cart';
-        return $result;
-    }
-
-    public function somethingNew(Product $product)
-    {
+        return response()->json([
+            'status' => 1,
+            'msg' => 'An item removed to cart'
+        ]);
     }
 
     public function empty(Request $request)
@@ -68,13 +79,10 @@ class CartController extends Controller
 
         $cart->products()->detach($request->products);
 
-        $result['status'] = 1;
-        $result['msg'] = 'Successfully emptied!';
-        return $result;
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Successfully emptied!'
+        ]);
     }
 
-    private function guard()
-    {
-        return Auth::guard();
-    }
 }
