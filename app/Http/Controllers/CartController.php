@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\CartProduct;
 use Illuminate\Http\Request;
 use App\Product;
@@ -34,7 +35,7 @@ class CartController extends Controller
         $user = auth()->user();
         $cart = $user->cart ? $user->cart : $user->createCart();
 
-        if ($user->checkForVerification()) {
+        if ($user->can('create', Cart::class)) {
             if ($cartProduct->whereProductId($request->id)->count()) {
                 $cartProduct->increment('quantity');
 
