@@ -59,7 +59,7 @@ export default {
     methods: {
         submit() {
             let self = this
-            this.$api.post('/product/update', {
+            this.$http.patch(`/product/${self.product.id}`, {
                 id: self.product.id,
                 categoryId: self.product.category_id,
                 title: self.product.title,
@@ -84,7 +84,7 @@ export default {
 
         deleteProduct(id) {
             let self = this
-            this.$api.post('/product/destroy', { id }).then(res => {
+            this.$api.delete(`/product/${id}`).then(res => {
                 self.deleteStatus = true
                 self.message = res.data.msg
             }).catch(res => console.log(err))
@@ -92,7 +92,7 @@ export default {
     },
     components: { Hero, Delete },
     created() {
-        let id = this.$route.params.id 
+        let id = this.$route.params.id
         this.gatherProductDetails(this.$route.params.id)
     }
 }

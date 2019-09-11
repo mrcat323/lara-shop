@@ -61,7 +61,7 @@ export default {
     	},
 
     	addToCart(id) {
-    		this.$http.post('/cart/store', { id })
+    		this.$http.post('/cart', { id })
     		.then(res => {
     			if (res.data.status == 0) {
     				this.$dialog.alert({

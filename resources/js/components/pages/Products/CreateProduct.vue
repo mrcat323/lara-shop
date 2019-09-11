@@ -52,7 +52,7 @@ export default {
     methods: {
         submit() {
             let self = this
-            this.$http.post('/product/store', {
+            this.$http.post('/product', {
                 categoryId: self.product.categoryId,
                 title: self.product.title,
                 about: self.product.about,
