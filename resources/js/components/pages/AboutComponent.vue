@@ -14,13 +14,6 @@ export default {
             moreInfo: 'This is about page for you!'
         }
     },
-    computed: {
-        lorem() {
-            if (moreInfo == 'good') {
-                return false;
-            }
-        }
-    },
     components: { Hero }
 }
 </script>
