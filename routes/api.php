@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,7 +15,7 @@ Route::prefix('auth')->group(function () {
     Route::post('register', 'AuthController@register');
     Route::post('login', 'AuthController@login');
     Route::get('refresh', 'AuthController@refresh');
-    
+
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('user', 'AuthController@user');
         Route::post('logout', 'AuthController@logout');
@@ -25,26 +23,32 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::prefix('product')->group(function () {
-	Route::get('all', 'ProductController@index');
-	Route::post('store', 'ProductController@store');
-	Route::post('update', 'ProductController@update');
-	Route::post('destroy', 'ProductController@destroy');
-	Route::get('{id}', 'ProductController@show');
-});
+Route::get('/product/all', 'ProductController@index');
+Route::apiResource(
+    'product',
+    'ProductController',
+    [
+        'except' => ['index']
+    ]
+);
 
-Route::prefix('category')->group(function () {
-	Route::get('all', 'CategoryController@index');
-	Route::post('store', 'CategoryController@store');
-	Route::post('update', 'CategoryController@update');
-	Route::post('destroy', 'CategoryController@destroy');
-	Route::get('{id}', 'CategoryController@show');
-});
+Route::get('/category/all', 'CategoryController@index');
+Route::apiResource(
+    'category',
+    'CategoryController',
+    [
+        'except' => ['index']
+    ]
+)->middleware('auth:api');
 
-Route::prefix('cart')->group(function () {
-	Route::get('all', 'CartController@index');
-	Route::post('store', 'CartController@store')->middleware('auth:api');
-	Route::post('destroy', 'CartController@destroy');
-});
+Route::get('/cart/all', 'CartController@index');
+Route::delete('/cart/empty', 'CartController@empty');
+Route::apiResource(
+    'cart',
+    'CartController',
+    [
+        'only' => ['store', 'destroy']
+    ]
+);
 
 Route::get('/verify/account/{token}', 'AuthController@verifyUser')->name('verify.via.token')->middleware('signed');
