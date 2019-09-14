@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-
     public function index()
     {
         $cartItems = auth()->user()->cart->products;
@@ -24,14 +23,13 @@ class CartController extends Controller
         $cart = $user->cart ?? $user->createCart();
 
         if ($user->can('create', Cart::class)) {
-            if ($cartProduct->whereProductId($request->id)->count()) {
-                $cartProduct->increment('quantity');
+            if ($product = $cartProduct->where('product_id', $request->id)->first()) {
+                $product->increment('quantity');
 
                 return response()->json([
                     'status' => 1,
                     'msg' => 'Same item have been added one more time'
                 ]);
-
             }
 
             $cart->products()->attach($request->id);
@@ -45,27 +43,19 @@ class CartController extends Controller
         return response()->json([
             'status' => 0,
             'msg' => 'Please verify your account to add products to your cart!'
-        ]);
+        ], 403);
     }
 
-    public function destroy(Request $request)
+    public function destroy($cart)
     {
-        auth()->user()->cart->products()->detach($request->id);
+        $userCart = auth()->user()->cart;
+
+        $userCart->products()->detach($cart);
 
         return response()->json([
             'status' => 1,
+            'items' => $userCart->products,
             'msg' => 'An item removed to cart'
         ]);
     }
-
-    public function empty(Request $request)
-    {
-        auth()->user()->cart->products()->detach($request->products);
-
-        return response()->json([
-            'status' => 1,
-            'msg' => 'Successfully emptied!'
-        ]);
-    }
-
 }
