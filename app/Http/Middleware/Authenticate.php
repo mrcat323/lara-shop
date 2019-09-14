@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -30,8 +29,8 @@ class Authenticate extends Middleware
         return $next($request);
     }
 
-    public function authenticate($request, array $guards) {
-
+    public function authenticate($request, array $guards)
+    {
         if (empty($guards)) {
             $guards = [null];
         }
@@ -40,7 +39,6 @@ class Authenticate extends Middleware
             if ($this->auth->guard($guard)->check()) {
                 return $this->auth->shouldUse($guard);
             }
-
         }
 
         return 'authentication_error';

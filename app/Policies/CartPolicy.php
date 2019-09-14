@@ -19,5 +19,4 @@ class CartPolicy
     {
         return (bool) $user->email_verified_at;
     }
-
 }

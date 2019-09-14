@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CategoryInterface;
 use Illuminate\Http\Request;
+use App\Repositories\CategoryInterface;
 
 class CategoryController extends Controller
 {
@@ -19,6 +19,7 @@ class CategoryController extends Controller
         $categories = $this->category->getAll();
 
         $result['categories'] = $categories;
+
         return $result;
     }
 
@@ -29,6 +30,7 @@ class CategoryController extends Controller
 
         $result['category'] = $category;
         $result['products'] = $products;
+
         return $result;
     }
 
@@ -42,6 +44,7 @@ class CategoryController extends Controller
 
         $result['status'] = 1;
         $result['msg'] = 'The Category had been successfully created!';
+
         return $result;
     }
 
@@ -53,6 +56,7 @@ class CategoryController extends Controller
 
         $result['status'] = 1;
         $result['msg'] = 'The Category had been successfully updated!';
+
         return $result;
     }
 
@@ -70,6 +74,7 @@ class CategoryController extends Controller
 
         $result['status'] = 1;
         $result['msg'] = 'You\'d successfully deleted the category';
+
         return $result;
     }
 }

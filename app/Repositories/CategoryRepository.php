@@ -2,15 +2,12 @@
 
 namespace App\Repositories;
 
-
-use App\Repositories\CategoryInterface;
-
 use App\Category;
 
 class CategoryRepository implements CategoryInterface
 {
     private $category;
-    
+
     public function __construct(Category $model)
     {
         $this->category = $model;

@@ -2,15 +2,12 @@
 
 namespace App\Repositories;
 
-
-use App\Repositories\ProductInterface;
-
 use App\Product;
 
 class ProductRepository implements ProductInterface
 {
     private $product;
-    
+
     public function __construct(Product $model)
     {
         $this->product = $model;
@@ -21,7 +18,7 @@ class ProductRepository implements ProductInterface
         return $this->product->latest()->get();
     }
 
-    public function withCategory() 
+    public function withCategory()
     {
         return $this->product->with('category')->latest()->get();
     }
