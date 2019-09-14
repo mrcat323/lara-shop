@@ -54,8 +54,8 @@
               <b-icon icon="menu-down"></b-icon>
 	    </a>
 	    
-	    <b-dropdown-item aria-role="menu-item">
-              <router-link :to="{ name: 'cart' }">Cart <b-icon icon="cart-outline" /></router-link>
+	    <b-dropdown-item aria-role="menu-item" @click="cart">
+              <a>Cart <b-icon icon="cart-outline" /></a>
 	    </b-dropdown-item>
 	    <b-dropdown-item @click="logout()" aria-role="menu-item">
 	      <a>Logout</a>
@@ -119,6 +119,9 @@ export default {
           error: function () {},
           redirect: '/'
         })
+      },
+      cart() {
+        this.$router.push({ name: 'cart' })
       }
     },
 
