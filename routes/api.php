@@ -33,11 +33,12 @@ Route::apiResource(
 );
 
 Route::get('/category/all', 'CategoryController@index');
+Route::get('/category/{id}', 'CategoryController@show');
 Route::apiResource(
     'category',
     'CategoryController',
     [
-        'except' => ['index']
+        'only' => ['store', 'update', 'destroy']
     ]
 )->middleware('auth:api');
 
