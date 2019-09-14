@@ -74,13 +74,13 @@ export default {
     },
     computed: {
         total() {
+            var total = 0
             if (this.products.length) {
-                var total = 0
                 for (var i = 0; i < this.products.length; i++) {
                     total += parseInt(this.products[i].price) * parseInt(this.products[i].product.quantity)
                 }
-                return total
             }
+            return total
         }
     },
     components: {DeleteComponent, Hero },
