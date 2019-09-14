@@ -67,4 +67,14 @@ class CartController extends Controller
             'msg' => 'An item removed to cart'
         ]);
     }
+
+    public function empty(Request $request)
+    {
+        auth()->user()->cart->products()->detach($request->products);
+
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Successfully emptied!'
+        ]);
+    }
 }

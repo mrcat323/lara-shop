@@ -52,6 +52,9 @@
         </div>
         <div class="container" v-if="!isEmpty">
             <h2>Total {{  total }}$</h2>
+            <button class="button is-danger" @click="emptyCart">
+                <b-icon icon="delete" size="is-large"></b-icon>
+            </button>
         </div>
     </div>
 </template>
@@ -102,7 +105,15 @@ export default {
                 })
                 .catch(err => console.log(err))
         },
-        
+        emptyCart() {
+            const products = this.products
+            this.$http.delete('/cart/empty', { products })
+                .then(() => {
+                    this.receiveCartItems()
+                    this.isEmpty = true
+                })
+                .catch(err => console.log(err))
+        }
     },
     created() {
         this.receiveCartItems()
