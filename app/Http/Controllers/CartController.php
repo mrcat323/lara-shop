@@ -46,10 +46,19 @@ class CartController extends Controller
         ], 403);
     }
 
-    public function destroy($cart)
+    public function destroy(CartProduct $cartProduct, $cart)
     {
         $userCart = auth()->user()->cart;
 
+        if ($product = $cartProduct->where('product_id', $cart)->where('quantity', '>', 1)->first()) {
+            $product->decrement('quantity');
+
+            return response()->json([
+                'status' => 1,
+                'items' => $userCart->products,
+                'msg' => 'An item removed for one more time'
+            ]);
+        }
         $userCart->products()->detach($cart);
 
         return response()->json([

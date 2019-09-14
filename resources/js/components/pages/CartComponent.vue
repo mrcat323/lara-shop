@@ -58,6 +58,7 @@
 
 <script>
 import Hero from '../layouts/HeroLayout.vue'
+import DeleteComponent from "../DeleteComponent";
 
 export default {
     data() {
@@ -79,7 +80,7 @@ export default {
             }
         }
     },
-    components: { Hero },
+    components: {DeleteComponent, Hero },
     methods: {
         receiveCartItems() {
             this.$http.get('/cart/all')
@@ -90,7 +91,18 @@ export default {
                     this.products = res.data.items
                 })
                 .catch(err => console.log(err))
-        }
+        },
+        removeItemFromCart(id) {
+            this.$http.delete(`/cart/${id}`)
+                .then(res => {
+                    this.products = res.data.items
+                    if (this.products.length === 0) {
+                        this.isEmpty = true
+                    }
+                })
+                .catch(err => console.log(err))
+        },
+        
     },
     created() {
         this.receiveCartItems()
