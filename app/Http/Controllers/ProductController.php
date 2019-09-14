@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Repositories\ProductInterface;
-
-use App\Repositories\CategoryInterface;
-
 use Illuminate\Http\Request;
+use App\Repositories\ProductInterface;
+use App\Repositories\CategoryInterface;
 
 class ProductController extends Controller
 {
-    
     private $product;
     private $category;
 
@@ -20,7 +16,7 @@ class ProductController extends Controller
         $this->product = $product;
         $this->category = $category;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +27,7 @@ class ProductController extends Controller
         $products = $this->product->withCategory();
 
         $result['products'] = $products;
+
         return $result;
     }
 
@@ -56,6 +53,7 @@ class ProductController extends Controller
 
         $result['status'] = 1;
         $result['msg'] = 'The Product had been successfully created!';
+
         return $result;
     }
 
@@ -70,6 +68,7 @@ class ProductController extends Controller
         $product = $this->product->getById($id);
 
         $result['product'] = $product;
+
         return $result;
     }
 
@@ -96,6 +95,7 @@ class ProductController extends Controller
 
         $result['status'] = 1;
         $result['msg'] = 'Product has been updated';
+
         return $result;
     }
 
@@ -111,7 +111,7 @@ class ProductController extends Controller
 
         $result['status'] = 1;
         $result['msg'] = 'Deleted successfully!';
+
         return $result;
     }
-
 }

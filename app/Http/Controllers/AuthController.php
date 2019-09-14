@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Hash;
 use App\User;
 use Illuminate\Http\Request;
-use Hash;
-use Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -41,6 +41,7 @@ class AuthController extends Controller
         if ($token = $this->guard()->attempt($credentails)) {
             return response()->json(['status' => 'success', 'token' => $token], 200)->header('Authorization', $token);
         }
+
         return response()->json(['error' => 'login_error'], 401);
     }
 
@@ -70,6 +71,7 @@ class AuthController extends Controller
     public function store(Request $request)
     {
         $token = $this->guard()->refresh();
+
         return response()->json(['user' => auth()->user()], 200)->header('Authorization', $token);
     }
 
