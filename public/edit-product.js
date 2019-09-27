@@ -96,7 +96,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     submit: function submit() {
       var self = this;
-      this.$api.post('/product/update', {
+      this.$http.patch("/product/".concat(self.product.id), {
         id: self.product.id,
         categoryId: self.product.category_id,
         title: self.product.title,
@@ -119,9 +119,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteProduct: function deleteProduct(id) {
       var self = this;
-      this.$api.post('/product/destroy', {
-        id: id
-      }).then(function (res) {
+      this.$api.delete("/product/".concat(id)).then(function (res) {
         self.deleteStatus = true;
         self.message = res.data.msg;
       }).catch(function (res) {

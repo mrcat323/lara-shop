@@ -33,6 +33,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -97,85 +98,94 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "container section" }, [
-        _c("div", { staticClass: "box" }, [
-          _c(
-            "form",
-            {
-              attrs: { method: "post" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.login($event)
+        _c(
+          "div",
+          { staticClass: "box" },
+          [
+            _c(
+              "form",
+              {
+                attrs: { method: "post" },
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.login($event)
+                  }
                 }
-              }
-            },
-            [
-              _c(
-                "b-field",
-                { attrs: { horizontal: "", label: "E-Mail" } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      placeholder: "Your E-Mail",
-                      name: "email",
-                      type: "email",
-                      expanded: ""
-                    },
-                    model: {
-                      value: _vm.email,
-                      callback: function($$v) {
-                        _vm.email = $$v
+              },
+              [
+                _c(
+                  "b-field",
+                  { attrs: { horizontal: "", label: "E-Mail" } },
+                  [
+                    _c("b-input", {
+                      attrs: {
+                        placeholder: "Your E-Mail",
+                        name: "email",
+                        type: "email",
+                        expanded: ""
                       },
-                      expression: "email"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-field",
-                { attrs: { horizontal: "", label: "Password" } },
-                [
-                  _c("b-input", {
-                    attrs: {
-                      placeholder: "Your password",
-                      name: "password",
-                      type: "password",
-                      expanded: ""
-                    },
-                    model: {
-                      value: _vm.password,
-                      callback: function($$v) {
-                        _vm.password = $$v
+                      model: {
+                        value: _vm.email,
+                        callback: function($$v) {
+                          _vm.email = $$v
+                        },
+                        expression: "email"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-field",
+                  { attrs: { horizontal: "", label: "Password" } },
+                  [
+                    _c("b-input", {
+                      attrs: {
+                        placeholder: "Your password",
+                        name: "password",
+                        type: "password",
+                        expanded: ""
                       },
-                      expression: "password"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-field",
-                { attrs: { horizontal: "", position: "is-centered" } },
-                [
-                  _c("p", { staticClass: "control" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button is-medium is-primary",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Login")]
-                    )
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ])
+                      model: {
+                        value: _vm.password,
+                        callback: function($$v) {
+                          _vm.password = $$v
+                        },
+                        expression: "password"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-field",
+                  { attrs: { horizontal: "", position: "is-centered" } },
+                  [
+                    _c("p", { staticClass: "control" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "button is-medium is-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Login")]
+                      )
+                    ])
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: { name: "forgot-password" } } }, [
+              _vm._v("Forgot Password ?")
+            ])
+          ],
+          1
+        )
       ])
     ],
     1

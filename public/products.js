@@ -77,7 +77,9 @@ __webpack_require__.r(__webpack_exports__);
     addToCart: function addToCart(id) {
       var _this2 = this;
 
-      this.$http.post('/cart/store').then(function (res) {
+      this.$http.post('/cart', {
+        id: id
+      }).then(function (res) {
         if (res.data.status == 0) {
           _this2.$dialog.alert({
             title: 'Error',

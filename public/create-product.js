@@ -62,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     submit: function submit() {
       var self = this;
-      this.$http.post('/product/store', {
+      this.$http.post('/product', {
         categoryId: self.product.categoryId,
         title: self.product.title,
         about: self.product.about,

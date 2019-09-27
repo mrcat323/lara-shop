@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["about-page~cart-page~category~create-category~create-product~edit-category~edit-product~home-page~lo~6177f6c9"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["about-page~cart-page~category~create-category~create-product~edit-category~edit-product~forgot-passw~fcf0c056"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/HeroLayout.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\

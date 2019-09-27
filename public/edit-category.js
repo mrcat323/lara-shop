@@ -81,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      this.$api.post('/category/update', {
+      this.$http.patch("/category/".concat(this.category.id), {
         id: this.category.id,
         name: this.category.name
       }).then(function (res) {
@@ -102,9 +102,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteCategory: function deleteCategory(id) {
       var _this3 = this;
 
-      this.$api.post('/category/destroy', {
-        id: id
-      }).then(function (res) {
+      this.$api.delete("/category/".concat(id)).then(function (res) {
         _this3.deleteStatus = true;
         _this3.message = res.data.msg;
       }).catch(function (err) {
