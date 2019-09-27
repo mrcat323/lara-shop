@@ -16,6 +16,8 @@ let CreateProduct = () => import(/* webpackChunkName: "create-product" */ '../co
 let EditProduct = () => import(/* webpackChunkName: "edit-product" */ '../components/pages/Products/EditProduct.vue')
 let CreateCategory = () => import(/* webpackChunkName: "create-category" */ '../components/pages/Categories/CreateCategory.vue')
 let EditCategory = () => import(/* webpackChunkName: "edit-category" */ '../components/pages/Categories/EditCategory.vue')
+let ForgotPassword = () => import(/* webpackChunkName: "forgot-password" */ '../components/pages/ForgotPasswordComponent.vue')
+let ResetPassword = () => import(/* webpackChunkName: "reset-password" */ '../components/pages/ResetPasswordComponent.vue')
 
 const router = new VueRouter({
     mode: 'history',
@@ -33,7 +35,9 @@ const router = new VueRouter({
 			{ path: 'edit', name: 'edit-category', component: EditCategory, meta: { auth: true } }
 		] },
 		{ path: '/category/create', name: 'create-category', component: CreateCategory, meta: { auth: true } },
-		{ path: '/verify/success', name: 'verified-account', component: VerifiedAccount, meta: { auth: false } } 
+		{ path: '/verify/success', name: 'verified-account', component: VerifiedAccount, meta: { auth: false } },
+        { path: '/forgot-password', name: 'forgot-password', component: ForgotPassword, meta: { auth: false } },
+        { path: '/reset/password/:token', name: 'reset-password', component: ResetPassword, meta: { auth: false } }
     ]
 })
 
