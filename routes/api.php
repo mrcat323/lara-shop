@@ -53,3 +53,7 @@ Route::apiResource(
 );
 
 Route::get('/verify/account/{token}', 'AuthController@verifyUser')->name('verify.via.token')->middleware('signed');
+
+Route::post('/reset/request', 'ForgotPasswordController@askForPasswordReset');
+Route::get('/reset/password/{token}', 'ResetPasswordController@reset')->name('reset.now')->middleware('signed');
+Route::post('/reset/now', 'ResetPasswordController@resetNow');
