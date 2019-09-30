@@ -37,7 +37,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_HeroLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../layouts/HeroLayout.vue */ "./resources/js/components/layouts/HeroLayout.vue");
-/* harmony import */ var _DeleteComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../DeleteComponent */ "./resources/js/components/DeleteComponent.vue");
+/* harmony import */ var _DeleteComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../DeleteComponent.vue */ "./resources/js/components/DeleteComponent.vue");
+/* harmony import */ var _layouts_FooterLayout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layouts/FooterLayout.vue */ "./resources/js/components/layouts/FooterLayout.vue");
 //
 //
 //
@@ -99,6 +100,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -124,8 +127,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    DeleteComponent: _DeleteComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Hero: _layouts_HeroLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    DeleteComponent: _DeleteComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Hero: _layouts_HeroLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Booter: _layouts_FooterLayout_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
     receiveCartItems: function receiveCartItems() {
@@ -390,7 +394,9 @@ var render = function() {
               1
             )
           ])
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("booter")
     ],
     1
   )

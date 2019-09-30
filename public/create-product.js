@@ -10,7 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_HeroLayout_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/HeroLayout.vue */ "./resources/js/components/layouts/HeroLayout.vue");
-/* harmony import */ var _mixins_gather_categories_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/gather-categories.js */ "./resources/js/components/mixins/gather-categories.js");
+/* harmony import */ var _layouts_FooterLayout_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../layouts/FooterLayout.vue */ "./resources/js/components/layouts/FooterLayout.vue");
+/* harmony import */ var _mixins_gather_categories_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/gather-categories.js */ "./resources/js/components/mixins/gather-categories.js");
 //
 //
 //
@@ -46,6 +47,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
       message: ''
     };
   },
-  mixins: [_mixins_gather_categories_js__WEBPACK_IMPORTED_MODULE_1__["gatherCategories"]],
+  mixins: [_mixins_gather_categories_js__WEBPACK_IMPORTED_MODULE_2__["gatherCategories"]],
   methods: {
     submit: function submit() {
       var self = this;
@@ -79,7 +82,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    Hero: _layouts_HeroLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Hero: _layouts_HeroLayout_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Booter: _layouts_FooterLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -223,7 +227,9 @@ var render = function() {
           ],
           1
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c("booter")
     ],
     1
   )

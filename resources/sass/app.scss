@@ -7,11 +7,13 @@ and open the template in the editor.
     Created on : Jan 5, 2019, 4:15:45 PM
     Author     : mrcat323
 */
-
 $pt: 20, 25;
 
 @each $padding in $pt {
-	.pt-#{$padding} {
-		padding-top: $padding + px;
-	}
+    .pt-#{$padding} {
+        padding-top: $padding + px;
+    }
 }
+
+$footer-background-color: red;
+@import "../../node_modules/bulma/sass/layout/footer.sass";

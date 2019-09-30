@@ -17,3 +17,8 @@ and open the template in the editor.
   padding-top: 25px;
 }
 
+.footer {
+  background-color: red;
+  padding: 3rem 1.5rem 6rem;
+}
+
