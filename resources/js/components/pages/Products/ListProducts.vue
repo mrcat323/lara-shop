@@ -38,11 +38,13 @@
 	        	</div>
 	        </div>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../../layouts/HeroLayout.vue'
+import Booter from '../../layouts/FooterLayout.vue'
 import { products } from '../../mixins/products.js'
 
 export default {
@@ -75,7 +77,7 @@ export default {
     		.catch(err => console.log(err))
     	}
     },
-    components: { Hero },
+    components: { Hero, Booter },
 
     created() {
     	this.gatherProducts()

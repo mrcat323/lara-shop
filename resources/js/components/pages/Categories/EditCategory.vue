@@ -21,11 +21,13 @@
                 </b-field>
             </div>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../../layouts/HeroLayout.vue'
+import Booter from '../../layouts/FooterLayout.vue'
 import Delete from '../../DeleteComponent.vue'
 
 export default {
@@ -66,7 +68,7 @@ export default {
             // console.log(id)
         }
     },
-    components: { Hero, Delete },
+    components: { Hero, Booter, Delete },
 
     created() {
         let id = this.$route.params.id

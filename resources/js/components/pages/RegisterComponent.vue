@@ -3,7 +3,7 @@
   <div class="hero-register">
     <hero title="Register" sub-title="Sign up to create an account" />
   </div>
-  
+
   <div class="container section">
   	<b-message v-if="success" has-icon title="Success" type="is-warning" aria-close-label="Close message">
     	Please make sure you verified your E-Mail address. Please check out your E-Mail to verify your account
@@ -30,14 +30,16 @@
     </form>
     </div>
   </div>
+    <booter></booter>
 </div>
 </template>
 
 <script>
 import Hero from '../layouts/HeroLayout.vue'
+import Booter from '../layouts/FooterLayout.vue'
 
 export default {
-    components: { Hero },
+    components: { Hero, Booter },
     data() {
 	return {
 	    name: '',

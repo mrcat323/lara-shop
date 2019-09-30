@@ -17,11 +17,13 @@
                 </b-field>
             </div>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../../layouts/HeroLayout.vue'
+import Booter from '../../layouts/FooterLayout.vue'
 
 export default {
     data() {
@@ -48,7 +50,7 @@ export default {
             })
         }
     },
-    components: { Hero }
+    components: { Hero, Booter }
 }
 </script>
 

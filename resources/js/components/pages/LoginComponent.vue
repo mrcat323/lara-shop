@@ -19,13 +19,16 @@
             <router-link :to="{ name: 'forgot-password' }">Forgot Password ?</router-link>
 	    </div>
 	  </div>
+    <booter></booter>
 </div>
 </template>
 
 <script>
 import Hero from '../layouts/HeroLayout.vue'
+import Booter from '../layouts/FooterLayout.vue'
+
 export default {
-    components: { Hero },
+    components: { Hero, Booter },
     data() {
 		return {
 		    email: '',

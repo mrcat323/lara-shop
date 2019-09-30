@@ -30,11 +30,13 @@
                 </b-field>
             </div>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../../layouts/HeroLayout.vue'
+import Booter from '../../layouts/FooterLayout.vue'
 import { gatherCategories } from '../../mixins/gather-categories.js'
 
 export default {
@@ -68,7 +70,7 @@ export default {
             })
         },
     },
-    components: { Hero }
+    components: { Hero, Booter }
 }
 </script>
 

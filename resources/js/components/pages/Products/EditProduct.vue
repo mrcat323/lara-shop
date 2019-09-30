@@ -34,12 +34,14 @@
                 </b-field>
             </div>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../../layouts/HeroLayout.vue'
 import Delete from '../../DeleteComponent.vue'
+import Booter from '../../layouts/FooterLayout.vue'
 import { gatherCategories } from '../../mixins/gather-categories.js'
 
 export default {
@@ -90,7 +92,7 @@ export default {
             }).catch(res => console.log(err))
         }
     },
-    components: { Hero, Delete },
+    components: { Hero, Delete, Booter },
     created() {
         let id = this.$route.params.id
         this.gatherProductDetails(this.$route.params.id)

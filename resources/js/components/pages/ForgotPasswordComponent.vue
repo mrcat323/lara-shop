@@ -15,11 +15,13 @@
                 <button class="button is-primary" @click="sendRequest">Send</button>
             </b-field>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../layouts/HeroLayout.vue'
+import Booter from '../layouts/FooterLayout.vue'
 
 export default {
     data() {
@@ -30,7 +32,7 @@ export default {
             message: ''
         }
     },
-    components: { Hero },
+    components: { Hero, Booter },
     methods: {
         sendRequest() {
             let email = this.email

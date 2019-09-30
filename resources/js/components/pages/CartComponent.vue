@@ -56,12 +56,14 @@
                 <b-icon icon="delete" size="is-large"></b-icon>
             </button>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../layouts/HeroLayout.vue'
-import DeleteComponent from "../DeleteComponent";
+import DeleteComponent from "../DeleteComponent.vue"
+import Booter from '../layouts/FooterLayout.vue'
 
 export default {
     data() {
@@ -83,7 +85,7 @@ export default {
             return total
         }
     },
-    components: {DeleteComponent, Hero },
+    components: { DeleteComponent, Hero, Booter },
     methods: {
         receiveCartItems() {
             this.$http.get('/cart/all')

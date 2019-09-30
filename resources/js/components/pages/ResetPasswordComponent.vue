@@ -31,11 +31,13 @@
                 </div>
             </b-field>
         </div>
+        <booter></booter>
     </div>
 </template>
 
 <script>
 import Hero from '../layouts/HeroLayout'
+import Booter from '../layouts/FooterLayout.vue'
 
 export default {
     data() {
@@ -48,7 +50,7 @@ export default {
             message: ''
         }
     },
-    components: { Hero },
+    components: { Hero, Booter },
     computed: {
       passwordConfirmed() {
           return (this.password_confirm === this.password)
