@@ -3,12 +3,11 @@
 namespace App\Listeners;
 
 use App\Events\ResetPassword;
-use App\Notifications\SendResetPasswordEmail;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\SendResetPasswordEmail;
 
 class SentEmailToResetPassword
 {
-
     /**
      * Handle the event.
      *

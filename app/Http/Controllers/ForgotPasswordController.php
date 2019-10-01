@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ResetPassword;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Events\ResetPassword;
+use Illuminate\Support\Facades\DB;
 
 class ForgotPasswordController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace App\Events;
 
 use App\User;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
 
 class ResetPassword
 {
@@ -26,5 +26,4 @@ class ResetPassword
         $this->user = $user;
         $this->token = $token;
     }
-
 }

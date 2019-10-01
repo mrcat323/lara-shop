@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\Dry;
 use App\User;
+use App\Traits\Dry;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
