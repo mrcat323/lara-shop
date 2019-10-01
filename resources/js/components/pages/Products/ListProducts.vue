@@ -13,7 +13,7 @@
 					  <div class="card-content">
 					    <div class="media">
 					      <div class="media-content">
-					        <p class="title is-4">{{ product.title }}</p>
+                              <p class="title is-4"><router-link :to="{ name: 'product', params: {id: product.id }}">{{ product.title }}</router-link></p>
 					        <p class="subtitle is-6">{{ product.price }} $</p>
 					      </div>
 					    </div>
