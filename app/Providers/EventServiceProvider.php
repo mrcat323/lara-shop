@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Events\ResetPassword;
-use App\Listeners\SentEmailToResetPassword;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\SentEmailToResetPassword;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

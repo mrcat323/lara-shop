@@ -3,9 +3,9 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class SendResetPasswordEmail extends Notification
 {
@@ -42,6 +42,7 @@ class SendResetPasswordEmail extends Notification
             now()->addMinutes(30),
             ['token' => $this->token]
         );
+
         return (new MailMessage)
             ->subject('Reset Your Password')
             ->markdown('emails.reset', compact('url'));
