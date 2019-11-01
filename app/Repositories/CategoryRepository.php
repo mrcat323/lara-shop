@@ -23,6 +23,14 @@ class CategoryRepository implements CategoryInterface
         return $this->category->findOrFail($id);
     }
 
+    public function storeProduct(int $id, array $attributes)
+    {
+        $category = $this->getById($id);
+        $category->products()->create($attributes);
+
+        return $category;
+    }
+
     public function create(array $attributes)
     {
         return $this->category->create($attributes);

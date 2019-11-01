@@ -10,6 +10,8 @@ interface CategoryInterface
 
     public function create(array $attributes);
 
+    public function storeProduct(int $id, array $attributes);
+    
     public function update(int $id, array $attributes);
 
     public function destroy(int $id);

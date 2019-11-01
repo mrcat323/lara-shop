@@ -26,9 +26,7 @@ class ProductController extends Controller
     {
         $products = $this->product->withCategory();
 
-        $result['products'] = $products;
-
-        return $result;
+        return response()->json(compact('products'));
     }
 
     /**
@@ -39,22 +37,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $categoryId = $request->categoryId;
-        $category = $this->category->getById($categoryId);
-
-        $data = [
+        $this->category->storeProduct($request->categoryId, [
             'title' => $request->title,
             'about' => $request->about,
             'price' => $request->price,
             'created_at' => now()
-        ];
+        ]);
 
-        $category->products()->create($data);
-
-        $result['status'] = 1;
-        $result['msg'] = 'The Product had been successfully created!';
-
-        return $result;
+        return response()->json([
+            'status' => 1,
+            'msg' => 'The Product had been successfully created!'
+        ]);
     }
 
     /**
@@ -67,9 +60,7 @@ class ProductController extends Controller
     {
         $product = $this->product->getById($id);
 
-        $result['product'] = $product;
-
-        return $result;
+        return response()->json(compact('product'));
     }
 
     /**
@@ -79,24 +70,20 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request)
     {
-        $data = [
+        $this->product->update($request->categoryId, $request->id, [
             'title' => $request->title,
             'about' => $request->about,
             'price' => $request->price
-        ];
+        ]); 
 
-        $category = $this->category->getById($request->categoryId);
-
-        $product = $this->product->getById($request->id);
-        $product->category()->associate($category);
-        $product->update($data);
-
-        $result['status'] = 1;
-        $result['msg'] = 'Product has been updated';
-
-        return $result;
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Product has been updated'
+        ]);
+            
     }
 
     /**
@@ -105,13 +92,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(Request $request)
     {
         $this->product->destroy($request->id);
 
-        $result['status'] = 1;
-        $result['msg'] = 'Deleted successfully!';
-
-        return $result;
+        return response()->json([
+            'status' => 1,
+            'msg' => 'Deleted successfully!'
+        ]);
     }
 }
