@@ -8,13 +8,18 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    /**
+     * View all user's items
+     *
+     * @return mixed
+     */
+    
     public function index()
     {
-        $cartItems = auth()->user()->cart->products;
+        $items = auth()->user()->cart->products;
 
-        return response()->json([
-            'items' => $cartItems
-        ]);
+        return response()->json(compact('items'));
     }
 
     public function store(Request $request, CartProduct $cartProduct)
@@ -46,6 +51,15 @@ class CartController extends Controller
         ], 403);
     }
 
+    /**
+     * Remove an item from cart
+     * If an item is added more than one time, the quantity of it will be decreased
+     *
+     * @param \App\CartProduct $cartProduct
+     * @param int $cart
+     * @return mixed
+     */
+
     public function destroy(CartProduct $cartProduct, $cart)
     {
         $userCart = auth()->user()->cart;
@@ -67,6 +81,13 @@ class CartController extends Controller
             'msg' => 'An item removed to cart'
         ]);
     }
+
+    /**
+     * Empty the cart in general, delete all items from the cart, not one-by-one, but together
+     *
+     * @param \Illuminate\Http\Request
+     * @return mixed
+     */
 
     public function empty(Request $request)
     {
