@@ -18,9 +18,7 @@ class CategoryController extends Controller
     {
         $categories = $this->category->getAll();
 
-        $result['categories'] = $categories;
-
-        return $result;
+        return response()->json(compact('categories'));
     }
 
     public function show($id)
@@ -28,53 +26,40 @@ class CategoryController extends Controller
         $category = $this->category->getById($id);
         $products = $category->products;
 
-        $result['category'] = $category;
-        $result['products'] = $products;
-
-        return $result;
+        return response()->json(compact('category', 'products'));
     }
 
     public function store(Request $request)
     {
-        $data = [
-            'name' => $request->name
-        ];
+        $this->category->create(['name' => $request->name]);
 
-        $this->category->create($data);
-
-        $result['status'] = 1;
-        $result['msg'] = 'The Category had been successfully created!';
-
-        return $result;
+        return response()->json([
+            'status' => 1,
+            'msg' => 'The Category had been successfully created!'
+        ]);
     }
 
     public function update(Request $request)
     {
-        $category = $this->category->getById($request->id);
+        $category->update($request->id, ['name' => $request->name]);
 
-        $category->update(['name' => $request->name]);
-
-        $result['status'] = 1;
-        $result['msg'] = 'The Category had been successfully updated!';
-
-        return $result;
+        return response()->json([
+            'status' => 1,
+            'msg' => 'The Category had been successfully updated!'
+        ]);
     }
 
     public function destroy(Request $request)
     {
-        $id = $request->id;
-
-        $category = $this->category->getById($id);
+        $this->category->destroy($request->id);
 
         foreach ($category->products as $product) {
             $product->delete();
         }
 
-        $category->delete();
-
-        $result['status'] = 1;
-        $result['msg'] = 'You\'d successfully deleted the category';
-
-        return $result;
+        return response()->json([
+            'status' => 1,
+            'msg' => 'You\'d successfully deleted the category'
+        ]);
     }
 }
