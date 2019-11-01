@@ -87,7 +87,7 @@ class AuthController extends Controller
             return redirect('/verify/success');
         }
 
-        return response()->json(['status' => 'what the hell?!']);
+        return response()->json(['status' => 'The user doesn\'t exist!']);
     }
 
     private function guard()
