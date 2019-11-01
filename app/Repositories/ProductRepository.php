@@ -8,9 +8,9 @@ class ProductRepository implements ProductInterface
 {
     private $product;
 
-    public function __construct(Product $model)
+    public function __construct(Product $product)
     {
-        $this->product = $model;
+        $this->product = $product;
     }
 
     public function getAll()
@@ -33,9 +33,13 @@ class ProductRepository implements ProductInterface
         return $this->product->create($attributes);
     }
 
-    public function update(int $id, array $attributes)
+    public function update(int $categoryId, int $id, array $attributes)
     {
-        return $this->getById($id)->update($attributes);
+        $product = $this->getById($id);
+        $product->category()->associate($categoryId);
+        $product->update($attributes);
+
+        return $product;
     }
 
     public function destroy(int $id)

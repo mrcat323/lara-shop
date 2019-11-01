@@ -8,9 +8,9 @@ class CategoryRepository implements CategoryInterface
 {
     private $category;
 
-    public function __construct(Category $model)
+    public function __construct(Category $category)
     {
-        $this->category = $model;
+        $this->category = $category;
     }
 
     public function getAll()
