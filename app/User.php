@@ -61,23 +61,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->cart()->save(new Cart);
     }
 
-    public function getUser()
-    {
-        return $this->find(auth()->user()->id);
-    }
-
-    public function checkForVerification()
-    {
-        return (bool) $this->email_verified_at;
-    }
-
     public function sendVerificationCode()
     {
-        $token = Str::random(60);
-
         DB::table('verify_users')->insert([
             'email' => $this->email,
-            'code' => $token
+            'code' => Str::random(60) 
         ]);
 
         Mail::to($this)->send(new VerifyUser($this, $token));
