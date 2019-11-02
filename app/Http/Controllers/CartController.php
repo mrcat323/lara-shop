@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Traits\Dry;
 use App\CartProduct;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    use Dry;
 
     /**
      * View all user's items
@@ -28,14 +30,11 @@ class CartController extends Controller
         $cart = $user->cart ?? $user->createCart();
 
         if ($user->can('create', Cart::class)) {
-            if ($product = $cartProduct->where('product_id', $request->id)->first()) {
-                $product->increment('quantity');
-
-                return response()->json([
-                    'status' => 1,
-                    'msg' => 'Same item have been added one more time'
-                ]);
-            }
+            
+            $this->increaseQuantity($cartProduct, $request, [
+                'status' => 1,
+                'msg' => 'An item added to cart'
+            ]);       
 
             $cart->products()->attach($request->id);
 
@@ -63,16 +62,13 @@ class CartController extends Controller
     public function destroy(CartProduct $cartProduct, $cart)
     {
         $userCart = auth()->user()->cart;
-
-        if ($product = $cartProduct->where('product_id', $cart)->where('quantity', '>', 1)->first()) {
-            $product->decrement('quantity');
-
-            return response()->json([
+        
+        $this->decreaseQuantity($cartProduct, $request, $cart, [
                 'status' => 1,
                 'items' => $userCart->products,
                 'msg' => 'An item removed for one more time'
-            ]);
-        }
+        ]);  
+        
         $userCart->products()->detach($cart);
 
         return response()->json([
